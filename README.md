@@ -5,7 +5,7 @@ A simple Clocking In and Clocking Out application built for businesses. The purp
 
 # Design Plan:
 - Build MySQL database for storing manager and workers infromation (name, pin, hours, pay, feedback, rating)
-- Build views for different pages (log in page, main page, feedback/rating page for workers, hours/pay summary page for workers, hours/pay summary page for manager, add/remove worker page, feedback/shift rating page for manager, pay/hours summary page for manager)
+- Build views for different pages (log in page, main page, feedback/rating page for workers, hours/pay summary page for workers, hours/pay summary page for manager, add/remove worker page, feedback/shift rating page for manager)
 - Vue.js for frontend, 
 - Java and sprint boot for backend rest api's and communication with database
 - Plan to setup CI/CD pipline (github, Docker, jenkins, AWS EC2 instance) 
