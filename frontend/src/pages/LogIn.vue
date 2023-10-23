@@ -1,11 +1,11 @@
 <template>
     <div class="loginpage">
-        <h1>Enter Your Pin</h1>
         <div>
+            <h2>Enter Your Pin</h2>
             <input id="pin" name="pin" type="text" v-model="enteredPin"/>
         </div>
         <div class="pin-layout">
-            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)">{{dig}}</base-button>
+            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)"><p>{{dig}}</p></base-button>
         </div>
         <div>
             <base-button @click="clearEnteredPin">Clear Pin</base-button>
@@ -51,10 +51,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center; /* Vertically center the content */
-  height: 50vh; /* Set the height to 100% of the viewport height for vertical centering */
+  height: 70vh; /* Set the height to 100% of the viewport height for vertical centering */
   justify-content: center; /* Center content both horizontally and vertically */
   background-color: white;
-  margin-top: 5%;
+  margin-top: 3%;
   margin-left: 25%;
   margin-right: 25%;
 }
@@ -64,6 +64,14 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     width: 30%;
     margin: 3%;
+}
+p {
+    font-size: large;
+}
+
+input{
+    font-size: 25px;
+    text-align: center;
 }
 
 </style>
