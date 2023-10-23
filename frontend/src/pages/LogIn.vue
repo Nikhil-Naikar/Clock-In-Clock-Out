@@ -2,13 +2,14 @@
     <div class="loginpage">
         <h1>Enter Your Pin</h1>
         <div>
-            <label for="pin">Pin:</label>
             <input id="pin" name="pin" type="text" v-model="enteredPin"/>
         </div>
         <div class="pin-layout">
-            <button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)">{{dig}}</button>
+            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)">{{dig}}</base-button>
         </div>
-        <button @click="clearEnteredPin">Clear Pin</button>
+        <div>
+            <base-button @click="clearEnteredPin">Clear Pin</base-button>
+        </div>
     </div>
 </template>
 
@@ -62,6 +63,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 30%;
+    margin: 3%;
 }
 
 </style>
