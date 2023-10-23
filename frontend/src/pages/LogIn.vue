@@ -1,11 +1,11 @@
 <template>
-    <div class="styling">
-        <h1>Clock In / Clock Out</h1>
+    <div class="loginpage">
+        <h1>Enter Your Pin</h1>
         <div>
             <label for="pin">Pin:</label>
             <input id="pin" name="pin" type="text" v-model="enteredPin"/>
         </div>
-        <div>
+        <div class="pin-layout">
             <button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)">{{dig}}</button>
         </div>
         <button @click="clearEnteredPin">Clear Pin</button>
@@ -45,9 +45,23 @@ export default {
 </script>
 
 <style scoped>
+.loginpage {
+  text-align: center; /* Horizontally center the content */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Vertically center the content */
+  height: 50vh; /* Set the height to 100% of the viewport height for vertical centering */
+  justify-content: center; /* Center content both horizontally and vertically */
+  background-color: white;
+  margin-top: 5%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
 
-.styling{
-    background-color: white;
+.pin-layout{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 30%;
 }
 
 </style>
