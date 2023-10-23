@@ -9,7 +9,6 @@
             <button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)">{{dig}}</button>
         </div>
         <button @click="clearEnteredPin">Clear Pin</button>
-        <button @click="clearEnteredPin">Log In</button>
     </div>
 </template>
 
@@ -29,6 +28,17 @@ export default {
         },
         clearEnteredPin(){
             this.enteredPin = '';
+        },
+    },
+    watch:{
+        enteredPin(value){
+            if (value.length === 4){
+                //check if valid
+                //get request to back end and send the pin
+                //if valid, backend will return true and userid
+                //if invalid, backend will return false
+                this.$router.push('/main/0');
+            }
         }
     }
 }
