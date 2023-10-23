@@ -1,5 +1,8 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <header><h1>CLOCK IN / CLOCK OUT</h1></header>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
