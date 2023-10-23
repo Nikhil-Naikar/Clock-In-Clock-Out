@@ -1,15 +1,11 @@
 <template>
-  <log-in></log-in>
+  <router-view></router-view>
 </template>
 
 <script>
-import LogIn from './pages/LogIn.vue';
 
 export default {
   name: 'App',
-  components: {
-    LogIn
-  }
 }
 </script>
 
