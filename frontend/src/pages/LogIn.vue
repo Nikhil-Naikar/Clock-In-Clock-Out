@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="styling">
         <h1>Clock In / Clock Out</h1>
         <div>
             <label for="pin">Pin:</label>
@@ -43,3 +43,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+.styling{
+    background-color: white;
+}
+
+</style>
