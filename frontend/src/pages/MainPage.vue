@@ -2,9 +2,25 @@
     <div class="mainpage">
         <base-button mode="big-buttons">10 min unpaid break</base-button>
         <base-button mode="big-buttons">30 min unpaid break</base-button>
-        <base-button mode="big-buttons">Clock In</base-button>
+        <base-button v-if="!isClockedIn"  mode="big-buttons">Clock In</base-button>
+        <base-button v-else  mode="big-buttons">Clock Out</base-button>
     </div>
 </template>
+
+<script>
+export default {
+    data(){
+        return{
+            user: '',
+            isClockedIn: false
+        };
+    },
+    beforeCreate(){
+        console.log('before');
+        //talk to backend to check if user is clocked in or not
+    }
+}
+</script>
 
 <style scoped>
 .mainpage {
