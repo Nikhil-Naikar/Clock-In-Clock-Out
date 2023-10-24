@@ -1,9 +1,15 @@
 <template>
-    <button>
+    <button :class="mode">
         <slot>
         </slot>
     </button>
 </template>
+
+<script>
+export default {
+  props: ["mode"]
+}
+</script>
 
 <style scoped>
 button{
@@ -23,4 +29,8 @@ button:active {
   border-color: rgb(98, 189, 207);
 }
 
+.big-buttons {
+    width: 50%;
+    height: 15%;
+}
 </style>
