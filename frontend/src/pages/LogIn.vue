@@ -38,7 +38,7 @@ export default {
                 //get request to back end and send the pin
                 //if valid, backend will return true and userid
                 //if invalid, backend will return false
-                this.$router.push('/main/0');
+                this.$router.push('/main/Nikhil');
             }
         }
     }
