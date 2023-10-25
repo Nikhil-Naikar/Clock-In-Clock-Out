@@ -21,10 +21,10 @@ export default {
     // },
     methods:{
         startShift(){
-            this.$router.push('/'+this.user+'/ClockedInOut', {clockingIn: true});
+            this.$router.push('/'+this.user+'/ClockedIn');
         },
         endShift(){
-            this.$router.push('/'+this.user+'/ClockedInOut', {clockingIn: false});
+            this.$router.push('/'+this.user+'/ClockedOut');
         },
     }
 }
