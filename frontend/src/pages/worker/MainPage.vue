@@ -4,7 +4,7 @@
         <base-button mode="big-buttons">10 min unpaid break</base-button>
         <base-button mode="big-buttons">30 min unpaid break</base-button>
         <base-button v-if="!isClockedIn"  mode="big-buttons" @click="startShift">Clock In</base-button>
-        <base-button v-else  mode="big-buttons">Clock Out</base-button>
+        <base-button v-else  mode="big-buttons" @click="endShift">Clock Out</base-button>
     </div>
 </template>
 
@@ -21,8 +21,11 @@ export default {
     // },
     methods:{
         startShift(){
-            this.$router.push('/'+this.user+'/ClockedIn');
-        }
+            this.$router.push('/'+this.user+'/ClockedInOut', {clockingIn: true});
+        },
+        endShift(){
+            this.$router.push('/'+this.user+'/ClockedInOut', {clockingIn: false});
+        },
     }
 }
 </script>
