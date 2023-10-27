@@ -1,11 +1,11 @@
 <template>
     <div class="mainpage">
         <div class="menu">
+            <p>Welcome {{ user }}!</p>
             <router-link to="/login"><base-button>Log Out</base-button></router-link>
         </div>
         <div class="grid-two-col">
             <div>
-                <p>Welcome {{ user }}!</p>
                 <img src="../../assets/clock.png">
             </div>
             <div class="selection-container">
@@ -13,6 +13,7 @@
                 <base-button mode="big-buttons">30 min unpaid break</base-button>
                 <base-button v-if="!isClockedIn"  mode="big-buttons" @click="startShift">Clock In</base-button>
                 <base-button v-else  mode="big-buttons" @click="endShift">Clock Out</base-button>
+                <base-button mode="big-buttons">View PayRoll History</base-button>
             </div>
         </div>
     </div>
@@ -87,7 +88,7 @@ p {
 
 .menu {
     display: flex;
-    justify-content: right;
+    justify-content: space-evenly;
     align-items: center;
     padding: 20px;
     padding-right: 50px;
