@@ -51,13 +51,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center; /* Vertically center the content */
-  height: 75vh; /* Set the height to 100% of the viewport height for vertical centering */
+  height: auto; /* Set the height to 100% of the viewport height for vertical centering */
   justify-content: center; /* Center content both horizontally and vertically */
   background-color: white;
   margin-left: 30%;
   margin-right: 30%;
   border-radius: 20%;
   border: 5px solid black;
+  padding: 50px;
 }
 
 .pin-layout{
