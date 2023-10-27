@@ -5,10 +5,10 @@
             <input id="pin" name="pin" type="text" v-model="enteredPin"/>
         </div>
         <div class="pin-layout">
-            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)"><p>{{dig}}</p></base-button>
+            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)"><p class="large-text">{{dig}}</p></base-button>
         </div>
         <div>
-            <base-button @click="clearEnteredPin">Clear Pin</base-button>
+            <base-button @click="clearEnteredPin"><p class="standard-text">Clear</p></base-button>
         </div>
     </div>
 </template>
@@ -51,22 +51,31 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center; /* Vertically center the content */
-  height: 70vh; /* Set the height to 100% of the viewport height for vertical centering */
+  height: 80vh; /* Set the height to 100% of the viewport height for vertical centering */
   justify-content: center; /* Center content both horizontally and vertically */
   background-color: white;
   margin-top: 3%;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 20%;
+  border: 5px solid black;
 }
 
 .pin-layout{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 30%;
+    width: 45%;
     margin: 3%;
 }
-p {
-    font-size: large;
+
+.large-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.standard-text {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 input{
