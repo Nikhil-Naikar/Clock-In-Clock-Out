@@ -1,19 +1,21 @@
 <template>
     <div class="mainpage">
-        <div class="menu">
-            <p>Welcome {{ user }}!</p>
-            <router-link to="/login"><base-button>Log Out</base-button></router-link>
-        </div>
-        <div class="grid-two-col">
-            <div>
+        <div class="grid-container">
+            <div class="selection-container">
+                <p>Welcome {{ user }}!</p>
+            </div>
+            <div class="selection-container">
+                <router-link to="/login"><base-button>Log Out</base-button></router-link>
+            </div>
+            <div class="selection-container">
                 <img src="../../assets/clock.png">
             </div>
             <div class="selection-container">
-                <base-button mode="big-buttons">10 min unpaid break</base-button>
-                <base-button mode="big-buttons">30 min unpaid break</base-button>
-                <base-button v-if="!isClockedIn"  mode="big-buttons" @click="startShift">Clock In</base-button>
-                <base-button v-else  mode="big-buttons" @click="endShift">Clock Out</base-button>
-                <base-button mode="big-buttons">View PayRoll History</base-button>
+                <base-button class="more-height" mode="big-buttons">10 min unpaid break</base-button>
+                <base-button class="more-height" mode="big-buttons">30 min unpaid break</base-button>
+                <base-button class="more-height" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">Clock In</base-button>
+                <base-button class="more-height" v-else  mode="big-buttons" @click="endShift">Clock Out</base-button>
+                <base-button class="more-height" mode="big-buttons">View PayRoll History</base-button>
             </div>
         </div>
     </div>
@@ -54,7 +56,7 @@ export default {
   border: 5px solid black;
 }
 
-.grid-two-col {
+.grid-container {
     display: grid;
     grid-template-columns: 60% 40%;
     padding-right: 30px;
@@ -81,9 +83,12 @@ img {
 }
 
 p {
-    margin-bottom: 0%;
     font-size: 30px;
     font-weight: bolder;
+}
+
+.more-height {
+    height: 50%;
 }
 
 .menu {
