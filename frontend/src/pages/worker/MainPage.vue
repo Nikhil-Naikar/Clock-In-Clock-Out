@@ -1,8 +1,11 @@
 <template>
     <div class="mainpage">
-        <h2>Welcome {{ user }}!</h2>
+        <div class="menu">
+            <router-link to="/login"><base-button>Log Out</base-button></router-link>
+        </div>
         <div class="grid-two-col">
             <div>
+                <p>Welcome {{ user }}!</p>
                 <img src="../../assets/clock.png">
             </div>
             <div class="selection-container">
@@ -16,7 +19,9 @@
 </template>
 
 <script>
+import BaseButton from '../../components/ui/BaseButton.vue';
 export default {
+  components: { BaseButton },
     data(){
         return{
             user: this.$route.params.id,
@@ -39,7 +44,7 @@ export default {
 
 <style scoped>
 .mainpage {
-  height: 50vh; /* Set the height to 100% of the viewport height for vertical centering */
+  height: auto; /* Set the height to 100% of the viewport height for vertical centering */
   justify-content: center; /* Center content both horizontally and vertically */
   background-color: white;
   margin-left: 20%;
@@ -51,7 +56,9 @@ export default {
 .grid-two-col {
     display: grid;
     grid-template-columns: 60% 40%;
-    padding: 50px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-bottom: 30px;
 }
 
 img {
@@ -70,6 +77,21 @@ img {
     text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+p {
+    margin-bottom: 0%;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.menu {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 20px;
+    padding-right: 50px;
+
 }
 
 
