@@ -5,10 +5,10 @@
             <input id="pin" name="pin" type="text" v-model="enteredPin"/>
         </div>
         <div class="pin-layout">
-            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)"><p class="large-text">{{dig}}</p></base-button>
+            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)"><p class="large-text">{{dig}}</p></base-button>            
         </div>
         <div>
-            <base-button @click="clearEnteredPin"><p class="large-text">Clear Pin</p></base-button>
+            <base-button @click="clearEnteredPin"><p class="medium-text">Clear Pin</p></base-button>            
         </div>
     </div>
 </template>
@@ -77,6 +77,11 @@ export default {
     font-weight: bold;
     margin-top: 0%;
     margin-bottom: 3%;
+}
+
+.medium-text {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 input{
