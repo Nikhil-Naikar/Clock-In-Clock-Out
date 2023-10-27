@@ -31,6 +31,6 @@ button:active {
 
 .big-buttons {
     width: 100%;
-    height: auto;
+    height: 15%;
 }
 </style>
