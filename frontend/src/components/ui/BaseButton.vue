@@ -30,7 +30,7 @@ button:active {
 }
 
 .big-buttons {
-    width: 50%;
-    height: 15%;
+    width: 100%;
+    height: 20%;
 }
 </style>
