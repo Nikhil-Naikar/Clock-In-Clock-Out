@@ -11,11 +11,12 @@
                 <img src="../../assets/clock.png">
             </div>
             <div class="selection-container">
-                <base-button class="more-height" mode="big-buttons">10 min unpaid break</base-button>
-                <base-button class="more-height" mode="big-buttons">30 min unpaid break</base-button>
-                <base-button class="more-height" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">Clock In</base-button>
-                <base-button class="more-height" v-else  mode="big-buttons" @click="endShift">Clock Out</base-button>
-                <base-button class="more-height" mode="big-buttons">View PayRoll History</base-button>
+                    <p class="small-text">What would you like to do?</p>
+                    <base-button class="more-height" mode="big-buttons">☕️ 10 minute break</base-button>
+                    <base-button class="more-height" mode="big-buttons">☕️ 30 minute break</base-button>
+                    <base-button class="more-height" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">🕣↶ Clock In</base-button>
+                    <base-button class="more-height" v-else  mode="big-buttons" @click="endShift">🕣↷ Clock Out</base-button>
+                    <base-button class="more-height" mode="big-buttons">💰📚 View PayRoll History</base-button>
             </div>
         </div>
     </div>
@@ -52,8 +53,13 @@ export default {
   background-color: white;
   margin-left: 20%;
   margin-right: 20%;
-  border-radius: 10%;
+  border-radius: 6%;
   border: 5px solid black;
+}
+
+.small-text{
+    font-size: medium;
+    font-weight: bold;
 }
 
 .grid-container {
