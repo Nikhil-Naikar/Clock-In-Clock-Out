@@ -87,10 +87,6 @@ p {
     font-weight: bolder;
 }
 
-.more-height {
-    height: 50%;
-}
-
 .menu {
     display: flex;
     justify-content: space-evenly;
