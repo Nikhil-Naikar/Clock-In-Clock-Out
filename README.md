@@ -29,4 +29,10 @@ A simple Clocking In and Clocking Out application built for businesses. The purp
 - Display total pay
 - Option to rate shift and leave feedback for manager
 
+# Progress on UI so far:
+<img width="927" alt="Screenshot 2023-11-04 at 4 55 23 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/751090a0-5fa2-419a-a826-3671d0d2c9d6">
+<img width="1025" alt="Screenshot 2023-11-04 at 4 55 11 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/a1faea77-b22a-44f9-9888-6fa636bd208a">
+
+
+
 
