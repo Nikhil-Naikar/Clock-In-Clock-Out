@@ -54,8 +54,8 @@ export default {
   height: auto; /* Set the height to 100% of the viewport height for vertical centering */
   justify-content: center; /* Center content both horizontally and vertically */
   background-color: white;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 25%;
+  margin-right: 25%;
   border-radius: 20%;
   border: 5px solid black;
   padding: 50px;
@@ -65,7 +65,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 45%;
-    margin: 3%;
+    margin: 3%
 }
 
 .large-text {
