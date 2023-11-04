@@ -2,7 +2,7 @@
     <div class="mainpage">
         <div class="grid-container">
             <div class="selection-container">
-                <p>Welcome {{ user }}!</p>
+                <p>{{ greeting }} {{ user }}!</p>
             </div>
             <div class="selection-container">
                 <router-link to="/login"><base-button>Log Out</base-button></router-link>
@@ -29,7 +29,8 @@ export default {
     data(){
         return{
             user: this.$route.params.id,
-            isClockedIn: false
+            isClockedIn: false,
+            greeting: 'Good Morning'
         };
     },
     // created(){
@@ -42,6 +43,19 @@ export default {
         endShift(){
             this.$router.push('/'+this.user+'/ClockedOut');
         },
+    },
+    created(){
+        const currentTime = new Date();
+        const currentHour = currentTime.getHours();
+        if(currentHour >= 0 && currentHour < 12){
+            this.greeting = 'Good Morning';
+        }
+        else if(currentHour >= 12 && currentHour < 18){
+            this.greeting = 'Good Afternoon';
+        }
+        else{
+            this.greeting = 'Good Evening';
+        }
     }
 }
 </script>
@@ -49,7 +63,7 @@ export default {
 <style scoped>
 .mainpage {
   height: auto; /* Set the height to 100% of the viewport height for vertical centering */
-  justify-content: center; /* Center content both horizontally and vertically */
+  justify-content: center; 
   background-color: white;
   margin-left: 20%;
   margin-right: 20%;
