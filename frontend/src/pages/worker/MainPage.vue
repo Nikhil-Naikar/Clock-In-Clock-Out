@@ -72,8 +72,9 @@ export default {
 }
 
 .small-text{
-    font-size: medium;
+    font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .flex-button{
@@ -106,6 +107,11 @@ img {
     text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+.selection-container .small-text{
+    display: flex;
+    justify-content: flex-start;
 }
 
 p {
