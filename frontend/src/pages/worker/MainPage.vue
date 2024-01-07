@@ -10,7 +10,7 @@
             <div class="selection-container">
                 <img src="../../assets/clock.png">
             </div>
-            <div class="selection-container">
+            <div class="button-container">
                     <p class="small-text">What would you like to do?</p>
                     <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>arrow</span></base-button>
                     <base-button class="more-height" mode="big-buttons">☕️ 30 minute break</base-button>
@@ -108,11 +108,15 @@ img {
     align-items: center;
     justify-content: center;
 }
-
-.selection-container .small-text{
+.button-container{
+    display: flex;
+    flex-direction: column;
+}
+.button-container .small-text{
     display: flex;
     justify-content: flex-start;
 }
+
 
 p {
     font-size: 30px;
