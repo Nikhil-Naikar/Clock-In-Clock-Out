@@ -67,7 +67,7 @@ export default {
   background-color: white;
   margin-left: 20%;
   margin-right: 20%;
-  border-radius: 6%;
+  border-radius: 0%;
   border: 5px solid black;
 }
 
