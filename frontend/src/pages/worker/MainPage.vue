@@ -12,11 +12,11 @@
             </div>
             <div class="button-container">
                     <p class="small-text">What would you like to do?</p>
-                    <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>arrow</span></base-button>
-                    <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>arrow</span></base-button>
-                    <base-button class="more-height flex-button" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">🕣↶ Clock In <span>arrow</span></base-button>
-                    <base-button class="more-height flex-button" v-else  mode="big-buttons" @click="endShift">🕣↷ Clock Out <span>arrow</span></base-button>
-                    <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>arrow</span></base-button>
+                    <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>→</span></base-button>
+                    <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>→</span></base-button>
+                    <base-button class="more-height flex-button" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
+                    <base-button class="more-height flex-button" v-else  mode="big-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
+                    <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
             </div>
         </div>
     </div>
