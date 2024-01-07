@@ -8,7 +8,7 @@
                 <router-link to="/login"><base-button>Log Out</base-button></router-link>
             </div>
             <div class="selection-container">
-                <img src="../../assets/clock.png">
+                <p class="date-time-info"><img src="../../assets/clock.png"> <span>Sunday, Jan 7</span> <span>3:41 PM</span></p>
             </div>
             <div class="button-container">
                     <p class="small-text">What would you like to do?</p>
@@ -77,6 +77,11 @@ export default {
     margin-bottom: 10px;
 }
 
+.date-time-info{
+    display: flex;
+    flex-direction: column;
+}
+
 .flex-button{
     display: flex;
     justify-content: space-between;
@@ -85,7 +90,7 @@ export default {
 
 .grid-container {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 50% 50%;
     padding-right: 30px;
     padding-left: 30px;
     padding-bottom: 30px;
@@ -94,11 +99,6 @@ export default {
 img {
     max-width: 100%;
     height: auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
 }
 
 .selection-container {
