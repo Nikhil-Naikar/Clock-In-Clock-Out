@@ -13,10 +13,10 @@
             <div class="button-container">
                     <p class="small-text">What would you like to do?</p>
                     <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>arrow</span></base-button>
-                    <base-button class="more-height" mode="big-buttons">☕️ 30 minute break</base-button>
-                    <base-button class="more-height" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">🕣↶ Clock In</base-button>
-                    <base-button class="more-height" v-else  mode="big-buttons" @click="endShift">🕣↷ Clock Out</base-button>
-                    <base-button class="more-height" mode="big-buttons">💰📚 View PayRoll History</base-button>
+                    <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>arrow</span></base-button>
+                    <base-button class="more-height flex-button" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">🕣↶ Clock In <span>arrow</span></base-button>
+                    <base-button class="more-height flex-button" v-else  mode="big-buttons" @click="endShift">🕣↷ Clock Out <span>arrow</span></base-button>
+                    <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>arrow</span></base-button>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@ export default {
 }
 
 .small-text{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 10px;
 }
