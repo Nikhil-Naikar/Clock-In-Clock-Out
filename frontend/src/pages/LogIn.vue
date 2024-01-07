@@ -56,7 +56,7 @@ export default {
   background-color: white;
   margin-left: 25%;
   margin-right: 25%;
-  border-radius: 20%;
+  border-radius: 0%;
   border: 5px solid black;
   padding: 50px;
 }
