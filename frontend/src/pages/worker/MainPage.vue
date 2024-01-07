@@ -11,7 +11,7 @@
                 <p class="date-time-info"><img src="../../assets/clock.png"> <span>{{date}}</span> <span>{{time}}</span></p>
             </div>
             <div class="button-container">
-                    <p class="small-text">What would you like to do?</p>
+                    <p class="question">What would you like to do?</p>
                     <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>→</span></base-button>
                     <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>→</span></base-button>
                     <base-button class="more-height flex-button" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
@@ -88,9 +88,9 @@ export default {
   border: 5px solid black;
 }
 
-.small-text{
-    font-size: 1.25rem;
-    font-weight: bold;
+.question{
+    font-size: 1.5rem;
+    font-weight: bolder;
     margin-bottom: 10px;
 }
 
@@ -129,7 +129,7 @@ img {
     display: flex;
     flex-direction: column;
 }
-.button-container .small-text{
+.button-container .question{
     display: flex;
     justify-content: flex-start;
 }
