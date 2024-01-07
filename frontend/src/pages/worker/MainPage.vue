@@ -8,7 +8,7 @@
                 <router-link to="/login"><base-button>Log Out</base-button></router-link>
             </div>
             <div class="selection-container">
-                <p class="date-time-info"><img src="../../assets/clock.png"> <span>Sunday, Jan 7</span> <span>3:41 PM</span></p>
+                <p class="date-time-info"><img src="../../assets/clock.png"> <span>{{date}}</span> <span>3:41 PM</span></p>
             </div>
             <div class="button-container">
                     <p class="small-text">What would you like to do?</p>
@@ -30,7 +30,8 @@ export default {
         return{
             user: this.$route.params.id,
             isClockedIn: false,
-            greeting: 'Good Morning'
+            greeting: 'Good Morning',
+            date: ''
         };
     },
     // created(){
@@ -46,6 +47,15 @@ export default {
     },
     created(){
         const currentTime = new Date();
+        // Get the day
+        const daysOfWeek = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const day = daysOfWeek[currentTime.getDay()];
+        // Get the month
+        const monthsOfYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const month = monthsOfYear[currentTime.getMonth()];
+        // Get the date
+        const date = currentTime.getDate();
+        this.date = day + ', ' + month + ' ' + date;
         const currentHour = currentTime.getHours();
         if(currentHour >= 0 && currentHour < 12){
             this.greeting = 'Good Morning';
