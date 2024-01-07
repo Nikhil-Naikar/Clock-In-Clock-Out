@@ -15,7 +15,7 @@ export default {
 button{
   text-decoration: none;
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   background-color: rgb(3, 107, 128);
   border: 1px solid rgb(98, 189, 207);
   color: white;
