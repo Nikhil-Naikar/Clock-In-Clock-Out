@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="center-content">
     <router-link class="remove-link-look" to="/"><header><h1>CLOCK IN / CLOCK OUT</h1></header></router-link>
     <router-view></router-view>
   </div>

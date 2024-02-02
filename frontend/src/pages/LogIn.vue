@@ -34,11 +34,11 @@ export default {
     watch:{
         enteredPin(value){
             if (value.length === 4){
-                //check if valid
-                //get request to back end and send the pin
-                //if valid, backend will return true and userid
-                //if invalid, backend will return false
-                this.$router.push('/main/Nikhil');
+                //check if key is linked to user
+                //if user key is correct & clocked in, collect time clocked in and username, redirect to main page for option for clocking out
+                //if user key is correct & not clocked in, collect username, redirect to main page for option for clocking in
+                //if in-valid key, clear pin and invalid message
+                this.$router.push('/main/Nikhil/false');
             }
         }
     }

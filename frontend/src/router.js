@@ -9,7 +9,7 @@ const router = createRouter({
     routes: [
         {path: '/', redirect: '/login'},
         {path: '/login', component: LogIn},
-        {path: '/main/:id', component: MainPage},
+        {path: '/main/:id/:isClockedIn', component: MainPage},
         {path: '/:id/ClockedIn', component: ClockedIn},
         {path: '/:id/ClockedOut', component: ClockedOut}
     ]

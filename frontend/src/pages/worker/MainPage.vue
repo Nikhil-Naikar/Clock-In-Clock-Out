@@ -11,12 +11,16 @@
                 <p class="date-time-info"><img src="../../assets/clock.png"> <span>{{date}}</span> <span>{{time}}</span></p>
             </div>
             <div class="button-container">
-                    <p class="question">What would you like to do?</p>
-                    <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>→</span></base-button>
-                    <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>→</span></base-button>
-                    <base-button class="more-height flex-button" v-if="!isClockedIn"  mode="big-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
-                    <base-button class="more-height flex-button" v-else  mode="big-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
-                    <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                    <div v-if="!isClockedIn">
+                        <p class="question">What would you like to do?</p>
+                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>→</span></base-button>
+                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>→</span></base-button>
+                        <base-button class="more-height flex-button" mode="big-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
+                        <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                    </div>
+                    <div v-else>
+                        <base-button class="more-height flex-button" mode="big-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
+                    </div>
             </div>
         </div>
     </div>
@@ -28,8 +32,8 @@ export default {
   components: { BaseButton },
     data(){
         return{
-            user: this.$route.params.id,
-            isClockedIn: false,
+            user: null,
+            isClockedIn: null,
             greeting: 'Good Morning',
             date: '',
             time: ''
@@ -47,6 +51,8 @@ export default {
         },
     },
     created(){
+        this.isClockedIn = this.$route.params.isClockedIn === 'true';
+        this.user = this.$route.params.id;
         const currentTime = new Date();
         // Get the day
         const daysOfWeek = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
