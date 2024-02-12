@@ -31,7 +31,12 @@ button:active {
 }
 
 .big-buttons {
-    width: 100%;
-    height: 20%;
+  width: 90%;
+  height: 30%;
+}
+
+.tall-buttons{
+  width: 90%;
+  height: 45%;
 }
 </style>

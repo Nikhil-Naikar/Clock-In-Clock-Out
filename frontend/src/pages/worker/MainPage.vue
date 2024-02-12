@@ -13,13 +13,15 @@
             <div class="button-container">
                     <div v-if="!isClockedIn">
                         <p class="question">What would you like to do?</p>
-                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>→</span></base-button>
-                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>→</span></base-button>
-                        <base-button class="more-height flex-button" mode="big-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
-                        <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                        <base-button class="flex-button" mode="tall-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
+                        <base-button class="flex-button" mode="tall-buttons">💰📚 View PayRoll History <span>→</span></base-button>
                     </div>
                     <div v-else>
+                        <p class="question">What would you like to do?</p>
+                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>→</span></base-button>
+                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>→</span></base-button>
                         <base-button class="more-height flex-button" mode="big-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
+                        <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
                     </div>
             </div>
         </div>
