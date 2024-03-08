@@ -4,7 +4,6 @@
         <h3>Successfully Clocked In on <span class="highlight">{{ day }} {{ date }}</span> at <span class="highlight">{{ time }}</span></h3>
         <router-link to="/login"><base-button>Log Out</base-button></router-link>
     </div>
-        
 </template>
 
 <script>

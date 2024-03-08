@@ -116,9 +116,7 @@ export default {
 .grid-container {
     display: grid;
     grid-template-columns: 50% 50%;
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-bottom: 30px;
+    padding: 30px;
 }
 
 img {

@@ -1,7 +1,11 @@
 <template>
   <div class="center-content">
-    <router-link class="remove-link-look" to="/"><header><h1>CLOCK IN / CLOCK OUT</h1></header></router-link>
-    <router-view></router-view>
+    <div class="container">
+      <router-link class="remove-link-look" to="/"><header><h1>CLOCK IN / CLOCK OUT</h1></header></router-link>
+    </div>
+    <div>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -29,5 +33,8 @@ h1 {
 .remove-link-look {
   text-decoration: none;
   color: black;
+}
+.container{
+  padding: 40px;
 }
 </style>
