@@ -3,6 +3,7 @@ import LogIn from './pages/LogIn.vue';
 import MainPage from './pages/worker/MainPage.vue';
 import ClockedIn from './pages/worker/ClockedIn.vue';
 import ClockedOut from './pages/worker/ClockedOut.vue';
+import ShiftFeedback from './pages/worker/ShiftFeedback.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,7 +12,8 @@ const router = createRouter({
         {path: '/login', component: LogIn},
         {path: '/main/:id/:isClockedIn', component: MainPage},
         {path: '/:id/ClockedIn', component: ClockedIn},
-        {path: '/:id/ClockedOut', component: ClockedOut}
+        {path: '/:id/ClockedOut', component: ClockedOut},
+        {path: '/:id/feedback', component: ShiftFeedback}
     ]
 });
 
