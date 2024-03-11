@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "shift_history")
-public class ShiftHistory extends DatabaseTable{
+public class ShiftHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
