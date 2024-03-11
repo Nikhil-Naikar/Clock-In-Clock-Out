@@ -1,7 +1,7 @@
 package com.backend.demo.controller;
 
 
-import com.backend.demo.entity.Staff;
+import com.backend.demo.entity.DatabaseTable;
 import com.backend.demo.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +27,7 @@ public class DatabaseController {
     }
 
     @GetMapping("/getUsername")
-    public List<Staff> getUsername(){
+    public List<DatabaseTable> getUsername(){
         return this.databaseService.getName(1111);
     }
 
