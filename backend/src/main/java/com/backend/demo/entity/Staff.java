@@ -4,7 +4,8 @@ package com.backend.demo.entity;
 import jakarta.persistence.*;
 
 @Entity()
-public class Users {
+@Table(name = "staff")
+public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
