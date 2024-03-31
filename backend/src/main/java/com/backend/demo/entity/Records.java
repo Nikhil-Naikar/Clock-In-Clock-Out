@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 public class Records {
 
     @Id
-//    private int index;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int generatedId;
     private int id;
     private String date;
     private String start_time;
