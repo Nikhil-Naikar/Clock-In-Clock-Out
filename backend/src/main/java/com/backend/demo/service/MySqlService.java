@@ -1,8 +1,9 @@
 package com.backend.demo.service;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import com.backend.demo.dto.UserInfo;
+import com.backend.demo.dto.PayHistory;
 import com.backend.demo.entity.Staff;
 import com.backend.demo.entity.Records;
 import com.backend.demo.respository.UsersRepo;
@@ -60,8 +61,13 @@ public class MySqlService implements DatabaseService {
         return recordsRow.get(0).getStart_time();
     }
 
-    public List<Records> getPayHistory(int pin){
-        return recordsRepository.findByPin(pin);
+    public List<PayHistory> getPayHistory(int pin){
+        List<Records> recordsRows =  recordsRepository.findByPin(pin);
+        List<PayHistory> res = new ArrayList<PayHistory>();
+        for (Records record : recordsRows){
+            res.add(new PayHistory(record.getDate(), record.getStart_time(), record.getEnd_time(), record.getHours(), record.getDaily_wage()));
+        }
+        return res;
     }
 
 

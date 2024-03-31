@@ -1,12 +1,13 @@
 package com.backend.demo.controller;
 
 
+import com.backend.demo.dto.PayHistory;
 import com.backend.demo.dto.UserInfo;
 import com.backend.demo.dto.UserPin;
 import com.backend.demo.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.backend.demo.entity.Records;
+
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class DatabaseController {
     }
 
     @GetMapping("/getPayHistory")
-    public List<Records> getPayHistory(){
+    public List<PayHistory> getPayHistory(){
         return this.databaseService.getPayHistory(3333);
     }
 
