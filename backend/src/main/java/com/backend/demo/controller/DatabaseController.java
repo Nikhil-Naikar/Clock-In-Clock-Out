@@ -3,7 +3,7 @@ package com.backend.demo.controller;
 
 import com.backend.demo.dto.PayHistory;
 import com.backend.demo.dto.UserInfo;
-import com.backend.demo.dto.UserPin;
+import com.backend.demo.dto.CheckUser;
 import com.backend.demo.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,19 +23,10 @@ public class DatabaseController {
     }
 
     @GetMapping("/getUserInfo")
-    public UserInfo getUsername(@RequestBody UserPin userPin){
-        return this.databaseService.getlogInInfo(userPin.getPin());
+    public UserInfo getUsername(@RequestBody CheckUser checkUser){
+        return this.databaseService.getlogInInfo(checkUser.getPin(), checkUser.getDate());
     }
 
-    @GetMapping("/getTime")
-    public String getTime(){
-        return this.databaseService.getStartTime(3333, "2024-01-11");
-    }
-
-    @GetMapping("/getPayHistory")
-    public List<PayHistory> getPayHistory(){
-        return this.databaseService.getPayHistory(3333);
-    }
 
 
 

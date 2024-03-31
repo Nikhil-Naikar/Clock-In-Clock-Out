@@ -42,15 +42,16 @@ public class MySqlService implements DatabaseService {
         return staffRow.get(0).getId();
     }
 
-    public UserInfo getlogInInfo(int pin){
+    public UserInfo getlogInInfo(int pin, String date){
         String name = this.getName(pin);
         if (name == null){
             return null;
         }
         int isClockedIn = this.isUserClockedIn(pin);
         int id = this.getId(pin);
-        UserInfo res = new UserInfo(name, id, isClockedIn);
-        return res;
+        String time = this.getStartTime(pin, date);
+        List<PayHistory> history = getPayHistory(pin);
+        return new UserInfo(name, id, isClockedIn, time, history);
     }
 
     public String getStartTime(int pin, String date){
