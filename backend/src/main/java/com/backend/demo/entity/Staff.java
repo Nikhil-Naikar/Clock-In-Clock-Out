@@ -13,6 +13,15 @@ public class Staff {
     private int pin;
     private int rate;
     private String role;
+    private int clockedIn;
+
+    public int isClockedIn() {
+        return clockedIn;
+    }
+
+    public void setClockedIn(int clockedIn) {
+        this.clockedIn = clockedIn;
+    }
 
     public int getId() {
         return id;

@@ -1,18 +1,16 @@
 package com.backend.demo.controller;
 
 
-import com.backend.demo.dto.UserLogInInfo;
+import com.backend.demo.dto.UserInfo;
+import com.backend.demo.dto.UserPin;
 import com.backend.demo.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/database")
+@RequestMapping("/data")
 public class DatabaseController {
 
     private DatabaseService databaseService;
@@ -22,15 +20,12 @@ public class DatabaseController {
         this.databaseService = databaseService;
     }
 
-    @GetMapping("/{pin}/getUsername")
-    public String getUsername(@PathVariable int pin){
-        return this.databaseService.getName(pin);
+    @GetMapping("/getUserInfo")
+    public UserInfo getUsername(@RequestBody UserPin userPin){
+        return this.databaseService.getlogInInfo(userPin.getPin());
     }
 
-    @GetMapping("/{pin}/getUserInfo")
-    public UserLogInInfo getUserDetails(@PathVariable int pin){
-        return new UserLogInInfo(this.getUsername(pin));
-    }
+
 
 
 

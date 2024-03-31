@@ -5,14 +5,25 @@ import jakarta.persistence.*;
 @Entity()
 @Table(name = "records")
 public class Records {
+
     @Id
+//    private int index;
     private int id;
     private String date;
     private String start_time;
     private String end_time;
     private int daily_wage;
     private int rating;
+    private int hours;
     private String feedback;
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
 
     public int getId() {
         return id;
