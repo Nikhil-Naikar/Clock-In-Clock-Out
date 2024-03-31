@@ -9,7 +9,7 @@ public class Records {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int generatedId;
-    private int id;
+    private int pin;
     private String date;
     private String start_time;
     private String end_time;
@@ -26,12 +26,12 @@ public class Records {
         this.hours = hours;
     }
 
-    public int getId() {
-        return id;
+    public int getPin() {
+        return pin;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPin(int id) {
+        this.pin = pin;
     }
 
     public String getDate() {
