@@ -5,21 +5,33 @@ import jakarta.persistence.*;
 @Entity()
 @Table(name = "records")
 public class Records {
+
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int generatedId;
+    private int pin;
     private String date;
     private String start_time;
     private String end_time;
     private int daily_wage;
     private int rating;
+    private int hours;
     private String feedback;
 
-    public int getId() {
-        return id;
+    public int getHours() {
+        return hours;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public int getPin() {
+        return pin;
+    }
+
+    public void setPin(int id) {
+        this.pin = pin;
     }
 
     public String getDate() {
