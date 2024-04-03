@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/data")
+@CrossOrigin("*")
 public class DatabaseController {
 
     private DatabaseService databaseService;

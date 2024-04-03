@@ -14,11 +14,14 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data(){
         return{
             enteredPin: '',
-            digits: [1,2,3,4,5,6,7,8,9]
+            digits: [1,2,3,4,5,6,7,8,9],
+            userData: null
         };
     },
     methods:{
@@ -30,6 +33,17 @@ export default {
         clearEnteredPin(){
             this.enteredPin = '';
         },
+        verifyPin(){
+            axios.get('http://localhost:1111/data/getUserInfo', {params: {pin: '2222', date:'2024-01-10'}})
+            .then(response => {
+                // Handle successful response
+                this.userData = response.data;
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error fetching data:', error);
+            });
+        }
     },
     watch:{
         enteredPin(value){
@@ -38,6 +52,8 @@ export default {
                 //if user key is correct & clocked in, collect time clocked in and username, redirect to main page for option for clocking out
                 //if user key is correct & not clocked in, collect username, redirect to main page for option for clocking in
                 //if in-valid key, clear pin and invalid message
+                this.verifyPin()
+                console.log(this.userData)
                 this.$router.push('/main/Nikhil/false');
             }
         }
