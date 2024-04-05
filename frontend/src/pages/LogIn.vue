@@ -55,7 +55,11 @@ export default {
                     this.invalidPin = true
                     this.clearEnteredPin();
                 }else{
-                    this.$router.push('/main/Nikhil/false');
+                    if (this.userData.isClockedIn){
+                        this.$router.push('/main/Nikhil/true');
+                    }else{
+                        this.$router.push('/main/Nikhil/false');
+                    }
                 }
             })
             .catch(error => {
