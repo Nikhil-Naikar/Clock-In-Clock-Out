@@ -4,6 +4,9 @@
             <p class="sub-title">Please Enter Pin:</p>
             <input id="pin" name="pin" type="text" v-model="enteredPin"/>
         </div>
+        <div v-if="invalidPin">
+            <p class="errorMessage">Invalid Pin</p>
+        </div>
         <div class="pin-layout">
             <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)"><p class="large-text">{{dig}}</p></base-button>            
         </div>
@@ -21,7 +24,8 @@ export default {
         return{
             enteredPin: '',
             digits: [1,2,3,4,5,6,7,8,9],
-            userData: null
+            userData: null,
+            invalidPin: false
         };
     },
     methods:{
@@ -32,12 +36,27 @@ export default {
         },
         clearEnteredPin(){
             this.enteredPin = '';
+            this.resetButtonColors();
+        },
+        resetButtonColors() {
+            // Reset button colors to default state
+            const buttons = document.querySelectorAll('.base-button');
+            buttons.forEach(button => {
+                button.classList.remove('active'); // Remove any additional styles
+            });
         },
         verifyPin(){
-            axios.get('http://localhost:1111/data/getUserInfo', {params: {pin: '2222', date:'2024-01-10'}})
+            axios.get(`http://localhost:1111/data/getUserInfo/${this.enteredPin}/2024-01-10`)
             .then(response => {
                 // Handle successful response
                 this.userData = response.data;
+                console.log(this.userData);
+                if (this.userData === null || Object.keys(this.userData).length === 0){
+                    this.invalidPin = true
+                    this.clearEnteredPin();
+                }else{
+                    this.$router.push('/main/Nikhil/false');
+                }
             })
             .catch(error => {
                 // Handle error
@@ -48,13 +67,12 @@ export default {
     watch:{
         enteredPin(value){
             if (value.length === 4){
-                //check if key is linked to user
                 //if user key is correct & clocked in, collect time clocked in and username, redirect to main page for option for clocking out
                 //if user key is correct & not clocked in, collect username, redirect to main page for option for clocking in
-                //if in-valid key, clear pin and invalid message
-                this.verifyPin()
-                console.log(this.userData)
-                this.$router.push('/main/Nikhil/false');
+                this.verifyPin()  
+            }
+            else if (value >= 1 && this.invalidPin === true){
+                this.invalidPin = false;
             }
         }
     }
@@ -82,6 +100,13 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     width: 45%;
     margin: 3%
+}
+
+.errorMessage{
+    color: red;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 0px;
 }
 
 .large-text {

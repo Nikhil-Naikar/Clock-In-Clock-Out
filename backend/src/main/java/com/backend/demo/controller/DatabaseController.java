@@ -1,15 +1,9 @@
 package com.backend.demo.controller;
 
-
-import com.backend.demo.dto.PayHistory;
 import com.backend.demo.dto.UserInfo;
-import com.backend.demo.dto.CheckUser;
 import com.backend.demo.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/data")
@@ -23,9 +17,9 @@ public class DatabaseController {
         this.databaseService = databaseService;
     }
 
-    @GetMapping("/getUserInfo")
-    public UserInfo getUsername(@RequestBody CheckUser checkUser){
-        return this.databaseService.getlogInInfo(checkUser.getPin(), checkUser.getDate());
+    @GetMapping("/getUserInfo/{pin}/{date}")
+    public UserInfo getUsername(@PathVariable int pin, @PathVariable String date){
+        return this.databaseService.getlogInInfo(pin, date);
     }
 
 
