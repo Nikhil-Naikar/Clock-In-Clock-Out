@@ -38,14 +38,21 @@ export default {
             isClockedIn: null,
             greeting: 'Good Morning',
             date: '',
-            time: ''
+            time: '',
+            pin: ''
         };
     },
-    // created(){
-    //     //talk to backend to check if user is clocked in or not
-    // },
     methods:{
         startShift(){
+            /**
+             * need to make a new row in table records,
+             * need pin, DDDD
+             * need date, "YYYY-MM-DD"
+             * need start_time, "HH:MM"
+             * insert in records table, make POST request
+             */
+            this.pin = this.$route.query.pin;
+            console.log(this.pin)
             this.$router.push('/'+this.user+'/ClockedIn');
         },
         endShift(){
