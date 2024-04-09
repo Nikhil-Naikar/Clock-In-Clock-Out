@@ -18,11 +18,6 @@ public class Records {
     private int hours;
     private String feedback;
 
-    public Records(int pin, String date, String start_time) {
-        this.pin = pin;
-        this.date = date;
-        this.start_time = start_time;
-    }
 
     public int getHours() {
         return hours;

@@ -72,7 +72,10 @@ public class MySqlService implements DatabaseService {
     }
 
     public void clockingIn(int pin, String date, String time){
-        Records newRecord = new Records(pin, date, time);
+        Records newRecord = new Records();
+        newRecord.setPin(pin);
+        newRecord.setDate(date);
+        newRecord.setStart_time(time);
         recordsRepository.save(newRecord);
     }
 

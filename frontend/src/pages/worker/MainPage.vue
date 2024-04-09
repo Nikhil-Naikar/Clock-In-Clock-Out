@@ -29,7 +29,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 import BaseButton from '../../components/ui/BaseButton.vue';
+
 export default {
   components: { BaseButton },
     data(){
@@ -39,21 +41,25 @@ export default {
             greeting: 'Good Morning',
             date: '',
             time: '',
-            pin: ''
+            pin: '',
         };
     },
     methods:{
         startShift(){
-            /**
-             * need to make a new row in table records,
-             * need pin, DDDD
-             * need date, "YYYY-MM-DD"
-             * need start_time, "HH:MM"
-             * insert in records table, make POST request
-             */
-            // this.pin = Number(this.$route.query.pin);
-            // let start_time = this.getTime();
-            // let date = this.getDate();
+            
+            this.pin = Number(this.$route.query.pin);
+            let start_time = this.getTime();
+            let date = this.getDate();
+            axios.post('http://localhost:1111/data/ClockInUser', {
+                // Request body data
+                pin: this.pin,
+                date: date,
+                time: start_time
+            })
+            .catch(error => {
+                // Handle error
+                console.error('There was an error!', error);
+            });
 
             this.$router.push('/'+this.user+'/ClockedIn');
         },
