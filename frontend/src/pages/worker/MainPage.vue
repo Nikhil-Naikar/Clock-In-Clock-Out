@@ -49,12 +49,13 @@ export default {
             
             this.pin = Number(this.$route.query.pin);
             let start_time = this.getTime();
-            let date = this.getDate();
+            let sqlDate = this.getDateForSql();
+            console.log('checking = ' + sqlDate);
             axios.post('http://localhost:1111/data/ClockInUser', {
                 // Request body data
-                pin: this.pin,
-                date: date,
-                time: start_time
+                "pin": this.pin,
+                "date": sqlDate,
+                "time": start_time
             })
             .catch(error => {
                 // Handle error
@@ -76,9 +77,12 @@ export default {
             minutes = minutes < 10 ? '0' + minutes : minutes;
             return hours + ':' + minutes;
         },
-        getDate(){
-            const currentDate = new Date();
-            console.log(currentDate);
+        getDateForSql(){
+            const currentTime = new Date();
+            let year = currentTime.getFullYear()
+            let month = currentTime.getMonth() < 10 ? '0' + currentTime.getMonth() : currentTime.getMonth();
+            let day = currentTime.getDay() < 10 ? '0' + currentTime.getDay() : currentTime.getDay();
+            return year + '-' + month + '-' + day;
         }
     },
     created(){

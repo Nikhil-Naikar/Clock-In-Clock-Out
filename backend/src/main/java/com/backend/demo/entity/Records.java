@@ -31,7 +31,7 @@ public class Records {
         return pin;
     }
 
-    public void setPin(int id) {
+    public void setPin(int pin) {
         this.pin = pin;
     }
 
