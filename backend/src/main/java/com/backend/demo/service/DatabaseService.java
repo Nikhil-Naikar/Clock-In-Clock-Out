@@ -15,6 +15,7 @@ public interface DatabaseService {
     public String getStartTime(int pin, String date);
 
     public List<PayHistory>  getPayHistory(int pin);
+    public void clockingIn(int pin, String date, String time);
 
 
 
