@@ -51,13 +51,29 @@ export default {
              * need start_time, "HH:MM"
              * insert in records table, make POST request
              */
-            this.pin = this.$route.query.pin;
-            console.log(this.pin)
+            // this.pin = Number(this.$route.query.pin);
+            // let start_time = this.getTime();
+            // let date = this.getDate();
+
             this.$router.push('/'+this.user+'/ClockedIn');
         },
         endShift(){
             this.$router.push('/'+this.user+'/ClockedOut');
         },
+        getTime(){
+            const currentTime = new Date();
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            if (hours === 0){
+                hours = 12
+            }
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            return hours + ':' + minutes;
+        },
+        getDate(){
+            const currentDate = new Date();
+            console.log(currentDate);
+        }
     },
     created(){
         this.isClockedIn = this.$route.params.isClockedIn === 'true';
