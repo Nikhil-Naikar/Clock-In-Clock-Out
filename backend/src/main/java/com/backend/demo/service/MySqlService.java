@@ -6,7 +6,7 @@ import com.backend.demo.dto.UserInfo;
 import com.backend.demo.dto.PayHistory;
 import com.backend.demo.entity.Staff;
 import com.backend.demo.entity.Records;
-import com.backend.demo.respository.UsersRepo;
+import com.backend.demo.respository.StaffRepo;
 import com.backend.demo.respository.RecordsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class MySqlService implements DatabaseService {
 
     @Autowired
-    private UsersRepo usersRepository;
+    private StaffRepo staffRepository;
     @Autowired
     private RecordsRepo recordsRepository;
 
@@ -25,7 +25,7 @@ public class MySqlService implements DatabaseService {
     }
 
     public String getName(int id){
-        List<Staff> staffRow = usersRepository.findByPin(id);
+        List<Staff> staffRow = staffRepository.findByPin(id);
         if (staffRow.isEmpty()){
             return null;
         }
@@ -33,12 +33,12 @@ public class MySqlService implements DatabaseService {
     }
 
     public int isUserClockedIn(int id){
-        List<Staff> staffRow = usersRepository.findByPin(id);
+        List<Staff> staffRow = staffRepository.findByPin(id);
         return staffRow.get(0).isClockedIn();
     }
 
     public int getId(int pin){
-        List<Staff> staffRow = usersRepository.findByPin(pin);
+        List<Staff> staffRow = staffRepository.findByPin(pin);
         return staffRow.get(0).getId();
     }
 
@@ -77,6 +77,10 @@ public class MySqlService implements DatabaseService {
         newRecord.setDate(date);
         newRecord.setStart_time(time);
         recordsRepository.save(newRecord);
+    }
+
+    public void updateStatus(int pin, int newStatus){
+        staffRepository.updateClockedInStatus(pin, newStatus);
     }
 
 

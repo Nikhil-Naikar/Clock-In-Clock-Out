@@ -28,6 +28,11 @@ public class DatabaseController {
         this.databaseService.clockingIn(clockInUserData.getPin(), clockInUserData.getDate(), clockInUserData.getTime());
     }
 
+    @PutMapping("/updateClockInStatus/{pin}/{status}")
+    public void updateStatus(@PathVariable int pin, @PathVariable int status){
+        this.databaseService.updateStatus(pin, status);
+    }
+
 
 
 
