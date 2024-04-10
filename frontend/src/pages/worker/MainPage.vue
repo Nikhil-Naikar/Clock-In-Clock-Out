@@ -45,12 +45,10 @@ export default {
         };
     },
     methods:{
-        startShift(){
-            
-            this.pin = Number(this.$route.query.pin);
+        recordStartTime(){
             let start_time = this.getTime();
             let sqlDate = this.getDateForSql();
-            console.log('checking = ' + sqlDate);
+            
             axios.post('http://localhost:1111/data/ClockInUser', {
                 // Request body data
                 "pin": this.pin,
@@ -61,6 +59,17 @@ export default {
                 // Handle error
                 console.error('There was an error!', error);
             });
+        },
+        updateClockInStatus(status){
+            axios.put('http://localhost:1111/data/updateClockInStatus/' + this.pin + '/' + status)
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+        },
+        startShift(){
+            this.pin = Number(this.$route.query.pin);
+            this.recordStartTime();
+            this.updateClockInStatus(1);
 
             this.$router.push('/'+this.user+'/ClockedIn');
         },
