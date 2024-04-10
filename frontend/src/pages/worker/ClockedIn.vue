@@ -31,7 +31,7 @@ export default {
         // Create a formatted date string in "YYYY-MM-DD" format
         const formattedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
 
-        console.log(formattedDate);
+        // console.log(formattedDate);
 
         // Use String formatting to ensure leading zeros if needed
         const formattedTime = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;

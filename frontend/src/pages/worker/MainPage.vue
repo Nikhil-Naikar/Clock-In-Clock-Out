@@ -29,7 +29,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 import BaseButton from '../../components/ui/BaseButton.vue';
+
 export default {
   components: { BaseButton },
     data(){
@@ -38,19 +40,50 @@ export default {
             isClockedIn: null,
             greeting: 'Good Morning',
             date: '',
-            time: ''
+            time: '',
+            pin: '',
         };
     },
-    // created(){
-    //     //talk to backend to check if user is clocked in or not
-    // },
     methods:{
         startShift(){
+            
+            this.pin = Number(this.$route.query.pin);
+            let start_time = this.getTime();
+            let sqlDate = this.getDateForSql();
+            console.log('checking = ' + sqlDate);
+            axios.post('http://localhost:1111/data/ClockInUser', {
+                // Request body data
+                "pin": this.pin,
+                "date": sqlDate,
+                "time": start_time
+            })
+            .catch(error => {
+                // Handle error
+                console.error('There was an error!', error);
+            });
+
             this.$router.push('/'+this.user+'/ClockedIn');
         },
         endShift(){
             this.$router.push('/'+this.user+'/ClockedOut');
         },
+        getTime(){
+            const currentTime = new Date();
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            if (hours === 0){
+                hours = 12
+            }
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            return hours + ':' + minutes;
+        },
+        getDateForSql(){
+            const currentTime = new Date();
+            let year = currentTime.getFullYear()
+            let month = currentTime.getMonth() < 10 ? '0' + currentTime.getMonth() : currentTime.getMonth();
+            let day = currentTime.getDay() < 10 ? '0' + currentTime.getDay() : currentTime.getDay();
+            return year + '-' + month + '-' + day;
+        }
     },
     created(){
         this.isClockedIn = this.$route.params.isClockedIn === 'true';

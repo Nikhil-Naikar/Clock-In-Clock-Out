@@ -18,6 +18,7 @@ public class Records {
     private int hours;
     private String feedback;
 
+
     public int getHours() {
         return hours;
     }
@@ -30,7 +31,7 @@ public class Records {
         return pin;
     }
 
-    public void setPin(int id) {
+    public void setPin(int pin) {
         this.pin = pin;
     }
 
