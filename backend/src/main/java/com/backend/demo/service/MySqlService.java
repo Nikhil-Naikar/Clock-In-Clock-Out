@@ -10,6 +10,7 @@ import com.backend.demo.respository.StaffRepo;
 import com.backend.demo.respository.RecordsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MySqlService implements DatabaseService {
@@ -78,7 +79,7 @@ public class MySqlService implements DatabaseService {
         newRecord.setStart_time(time);
         recordsRepository.save(newRecord);
     }
-
+    @Transactional
     public void updateStatus(int pin, int newStatus){
         staffRepository.updateClockedInStatus(pin, newStatus);
     }
