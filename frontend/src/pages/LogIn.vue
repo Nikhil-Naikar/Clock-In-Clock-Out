@@ -56,9 +56,9 @@ export default {
                     this.clearEnteredPin();
                 }else{
                     if (this.userData.isClockedIn){
-                        this.$router.push('/main/Nikhil/true');
+                        this.$router.push('/main/'+this.userData.name+'/true');
                     }else{
-                        this.$router.push({path:'/main/Nikhil/false', query: { pin: this.enteredPin}});
+                        this.$router.push({path:'/main/'+this.userData.name+'/false', query: { pin: this.enteredPin}});
                     }
                 }
             })
