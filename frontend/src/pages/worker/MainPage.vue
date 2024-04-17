@@ -176,6 +176,7 @@ img {
 .button-container{
     display: flex;
     flex-direction: column;
+    height: auto;
 }
 .button-container .question{
     display: flex;
