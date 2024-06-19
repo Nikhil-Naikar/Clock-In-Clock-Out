@@ -12,6 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * The MySQLService is a service class contains the implementation for
+ * several methods that are defined the DatabaseService interface which
+ * this class implements
+ *
+ * @author Nikhil Naikar
+ * @version 1.0
+ * @since Dec.5,2023
+ */
+
 @Service
 public class MySqlService implements DatabaseService {
 
@@ -20,30 +30,55 @@ public class MySqlService implements DatabaseService {
     @Autowired
     private RecordsRepo recordsRepository;
 
-
-    public String test(){
-        return "Hello World from MySqlService class";
-    }
-
-    public String getName(int id){
-        List<Staff> staffRow = staffRepository.findByPin(id);
+    /**
+     * Queries the Staff table, get row with matching pin attribute,
+     * uses getter to get name attribute value
+     *
+     * @param pin, a int (dddd)
+     * @return a String holds the name of the user
+     */
+    public String getName(int pin){
+        List<Staff> staffRow = staffRepository.findByPin(pin);
         if (staffRow.isEmpty()){
             return null;
         }
         return staffRow.get(0).getName();
     }
 
-    public int isUserClockedIn(int id){
-        List<Staff> staffRow = staffRepository.findByPin(id);
+    /**
+     * Queries the Staff table, get row with matching pin attribute,
+     * uses getter to get ClockedIn attribute value
+     *
+     * @param pin, a int (dddd)
+     * @return int holds the ClockedIn value
+     */
+    public int isUserClockedIn(int pin){
+        List<Staff> staffRow = staffRepository.findByPin(pin);
         return staffRow.get(0).isClockedIn();
     }
 
+    /**
+     * Queries the Staff table, get row with matching pin attribute,
+     * uses getter to get id attribute value
+     *
+     * @param pin, a int (dddd)
+     * @return int holds the id value
+     */
     public int getId(int pin){
         List<Staff> staffRow = staffRepository.findByPin(pin);
         return staffRow.get(0).getId();
     }
 
-    public UserInfo getlogInInfo(int pin, String date){
+    /**
+     * Gets a pin and date, uses this to query the database to get
+     * the user data
+     *
+     * @param pin, a int (dddd)
+     * @param date, a String
+     * @return UserInfo data transfer object holding all important user data
+     * needed by frontend app
+     */
+    public UserInfo getLogInInfo(int pin, String date){
         String name = this.getName(pin);
         if (name == null){
             return null;
@@ -55,6 +90,14 @@ public class MySqlService implements DatabaseService {
         return new UserInfo(name, id, isClockedIn, time, history);
     }
 
+    /**
+     * Gets a pin and date, uses this to query the Records table,
+     * to get time when a specific staff started their shift
+     *
+     * @param pin, a int (dddd)
+     * @param date, a String
+     * @return String, return the start time of the shift of a specific staff
+     */
     public String getStartTime(int pin, String date){
         List<Records> recordsRow = recordsRepository.findByPinAndDate(pin, date);
         if (recordsRow.isEmpty()){
@@ -63,6 +106,16 @@ public class MySqlService implements DatabaseService {
         return recordsRow.get(0).getStart_time();
     }
 
+    /**
+     * Gets a pin, uses this to query the Records table, to get
+     * all the matching rows that is the work history of a
+     * specific user
+     *
+     * @param pin, a int (dddd)
+     * @return PayHistory, a data transfer object, returns all the
+     * important data for the shift history of a specific staff to
+     * the frontend app
+     */
     public List<PayHistory> getPayHistory(int pin){
         List<Records> recordsRows =  recordsRepository.findByPin(pin);
         List<PayHistory> res = new ArrayList<PayHistory>();
@@ -72,6 +125,14 @@ public class MySqlService implements DatabaseService {
         return res;
     }
 
+    /**
+     * Add a record to the Records table, containing details
+     * about a staff clocking in
+     *
+     * @param pin, a int (dddd)
+     * @param date, a String
+     * @param time, a String
+     */
     public void clockingIn(int pin, String date, String time){
         Records newRecord = new Records();
         newRecord.setPin(pin);
@@ -79,6 +140,14 @@ public class MySqlService implements DatabaseService {
         newRecord.setStart_time(time);
         recordsRepository.save(newRecord);
     }
+
+    /**
+     * Updates the clockedIn attribute of the record in the Staff
+     * table that matches the pin attribute
+     *
+     * @param pin, a int (dddd)
+     * @param newStatus, a int (d)
+     */
     @Transactional
     public void updateStatus(int pin, int newStatus){
         staffRepository.updateClockedInStatus(pin, newStatus);
