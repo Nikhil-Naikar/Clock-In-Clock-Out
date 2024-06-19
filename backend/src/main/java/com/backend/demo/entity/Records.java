@@ -2,6 +2,16 @@ package com.backend.demo.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * The Records class is built to represent the entity in the local MySQL database.
+ * Class variables: represent all the attribute names
+ * Class methods: are setters and getters to data retrieval and modification
+ *
+ * @author Nikhil Naikar
+ * @version 1.0
+ * @since Dec.5,2023
+ */
+
 @Entity()
 @Table(name = "records")
 public class Records {
