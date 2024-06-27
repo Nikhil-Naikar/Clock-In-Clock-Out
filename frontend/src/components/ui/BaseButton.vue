@@ -1,5 +1,5 @@
 <template>
-    <button :class="mode">
+    <button :class="size">
         <slot>
         </slot>
     </button>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  props: ["mode"]
+  props: ["size"]
 }
 </script>
 
@@ -30,15 +30,13 @@ button:active {
   border-color: rgb(98, 189, 207);
 }
 
-.big-buttons {
-  width: 90%;
-  /* height: 30%; */
-  height: auto;
+.large-text {
+    font-size: 25px;
+    font-weight: bold;
 }
 
-.tall-buttons{
-  width: 90%;
-  /* height: 45%; */
-  height: auto;
+.medium-text {
+    font-size: 20px;
+    font-weight: bold;
 }
 </style>

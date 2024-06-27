@@ -4,6 +4,7 @@
       <router-link class="remove-link-look" to="/"><header><h1>CLOCK IN / CLOCK OUT</h1></header></router-link>
     </div>
     <div>
+      <!-- Here is where the page content changes based on the route links -->
       <router-view></router-view>
     </div>
   </div>
