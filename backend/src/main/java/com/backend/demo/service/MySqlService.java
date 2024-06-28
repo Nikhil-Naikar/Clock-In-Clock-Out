@@ -142,6 +142,44 @@ public class MySqlService implements DatabaseService {
     }
 
     /**
+     * Updates a record from the Records table, add the end time,
+     * calculates the daily wage by looking up the rate in the staff
+     * table and determine the hours of the shift
+     *
+     * @param pin, a int (dddd)
+     * @param date, a String
+     * @param endTime, a String
+     */
+    public void clockingOut(int pin, String date, String endTime){
+//       wage, update recordDE
+        int hourlyRate = staffRepository.findByPin(pin).get(0).getRate();
+        String startTime = recordsRepository.findByPinAndDate(pin, date).get(0).getStart_time();
+
+        String[] startParts = startTime.split(":");
+        int startHours = Integer.parseInt(startParts[0]);
+        int startMinutes = Integer.parseInt(startParts[1]);
+
+        String[] endParts = endTime.split(":");
+        int endHours = Integer.parseInt(endParts[0]);
+        int endMinutes = Integer.parseInt(endParts[1]);
+
+        int totalStartMinutes = startHours * 60 + startMinutes;
+        int totalEndMinutes = endHours * 60 + endMinutes;
+
+        int totalMinutesDifference;
+        if (totalEndMinutes >= totalStartMinutes) {
+            totalMinutesDifference = totalEndMinutes - totalStartMinutes;
+        } else {
+            totalMinutesDifference = (24 * 60 - totalStartMinutes) + totalEndMinutes;
+        }
+
+        double wage = ((double) totalMinutesDifference / 60) * hourlyRate;
+        // have to test this solution
+    }
+
+
+
+    /**
      * Updates the clockedIn attribute of the record in the Staff
      * table that matches the pin attribute
      *

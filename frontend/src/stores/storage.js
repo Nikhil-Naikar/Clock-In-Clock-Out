@@ -60,7 +60,7 @@ export const useStorageStore = defineStore('storage', {
         const currentTime = new Date();
         let year = currentTime.getFullYear()
         let month = currentTime.getMonth() < 10 ? '0' + currentTime.getMonth() : currentTime.getMonth();
-        let day = currentTime.getDay() < 10 ? '0' + currentTime.getDay() : currentTime.getDay();
+        let day = currentTime.getDate() < 10 ? '0' + currentTime.getDate() : currentTime.getDate();
         return year + '-' + month + '-' + day;
     },
     sqlTimeFormat(){
@@ -71,7 +71,7 @@ export const useStorageStore = defineStore('storage', {
             hours = 12
         }
         minutes = minutes < 10 ? '0' + minutes : minutes;
-        return hours.toString() + minutes.toString();
+        return hours + ':' + minutes;
     }
   }
 })

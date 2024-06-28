@@ -89,6 +89,17 @@ public interface DatabaseService {
     public void clockingIn(int pin, String date, String time);
 
     /**
+     * Updates a record from the Records table, add the end time,
+     * calculates the daily wage by looking up the rate in the staff
+     * table and determine the hours of the shift
+     *
+     * @param pin, a int (dddd)
+     * @param date, a String
+     * @param time, a String
+     */
+    public void clockingOut(int pin, String date, String time);
+
+    /**
      * Updates the clockedIn attribute of the record in the Staff
      * table that matches the pin attribute
      *

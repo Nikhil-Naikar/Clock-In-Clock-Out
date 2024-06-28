@@ -42,10 +42,8 @@ export default {
         };
     },
     methods:{
-        makeRecord(){
-            console.log('this is added =>' + this.store.sqlDateFormat());
-            console.log('this is added =>' + this.store.sqlTimeFormat());
-            axios.post('http://localhost:1111/data/ClockInUser', {
+        makeRecord(action){
+            axios.post(`http://localhost:1111/data/${action}`, {
                 // Request body data
                 "pin": this.store.getPin,
                 "date": this.store.sqlDateFormat(),
@@ -64,12 +62,12 @@ export default {
         },
         startShift(){
             this.updateClockInStatus(1);
-            // this.makeRecord()
+            this.makeRecord('clock-in')
             this.$router.push('/clocked-in');
         },
         endShift(){
             this.updateClockInStatus(0);
-            // this.makeRecord()
+            this.makeRecord('clock-out')
             this.$router.push('/clocked-out');
         }
     }
