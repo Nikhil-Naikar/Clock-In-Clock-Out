@@ -1,6 +1,6 @@
 <template>
     <div class="clockedinpage">
-        <h3>Have a great shift {{ user }}!</h3>
+        <h3>Have a great shift {{ store.getName }}!</h3>
         <h3>Successfully Clocked In on <span class="highlight">{{ day }} {{ date }}</span> at <span class="highlight">{{ time }}</span></h3>
         <router-link to="/login"><base-button>Log Out</base-button></router-link>
     </div>
@@ -8,15 +8,17 @@
 
 <script>
 import BaseButton from '../../components/ui/BaseButton.vue';
+import { useStorageStore } from '../../stores/storage.js';
+
 export default {
   components: { BaseButton },
     data(){
         return{
-            user: this.$route.params.id,
             time: '',
             date: '',
             daysOfTheWeek: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
             dayIndex: '',
+            store: useStorageStore(),
         };
     },
     created(){

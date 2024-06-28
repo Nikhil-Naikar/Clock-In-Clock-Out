@@ -12,8 +12,8 @@ const router = createRouter({
         {path: '/', redirect: '/login'},
         {path: '/login', component: LogIn},
         {path: '/home', component: HomePage},
-        {path: '/:id/ClockedIn', component: ClockedIn},
-        {path: '/:id/ClockedOut', component: ClockedOut}
+        {path: '/clocked-in', component: ClockedIn},
+        {path: '/clocked-out', component: ClockedOut}
         // {path: '/:id/feedback', component: ShiftFeedback}
     ]
 });

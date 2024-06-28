@@ -1,20 +1,22 @@
 <template>
     <div class="clockedoutpage">
-        <h3>Hope you had a great shift {{ user }}!</h3>
+        <h3>Hope you had a great shift {{ store.getName }}!</h3>
         <h3>Successfully Clocked Out on <span class="highlight">{{ day }} {{ date }}</span> at <span class="highlight">{{ time }}</span></h3>
         <router-link to="/login"><base-button>Log Out</base-button></router-link>
     </div>
 </template>
 
 <script>
+import { useStorageStore } from '../../stores/storage.js';
+
 export default {
     data(){
         return{
-            user: this.$route.params.id,
             time: '',
             date: '',
             daysOfTheWeek: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
             dayIndex: '',
+            store: useStorageStore(),
         };
     },
     created(){

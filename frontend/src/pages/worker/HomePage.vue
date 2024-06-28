@@ -2,13 +2,13 @@
     <div class="mainpage">
         <div class="grid-container">
             <div class="selection-container">
-                <p>{{ greeting }} {{ user }}!</p>
+                <p>Hello {{ store.getName }}!</p>
             </div>
             <div class="selection-container">
                 <router-link to="/login"><base-button>Log Out</base-button></router-link>
             </div>
             <div class="selection-container">
-                <p class="date-time-info"><img src="../../assets/clock.png"> <span>{{date}}</span> <span>{{time}}</span></p>
+                <p class="date-time-info"><img src="../../assets/clock.png"> <span>{{store.getDate}}</span> <span>{{store.getTime}}</span></p>
             </div>
             <div class="button-container">
                     <div v-if="!store.getStatus">
@@ -38,25 +38,16 @@ export default {
   components: { BaseButton },
     data(){
         return{
-            user: null,
-            isClockedIn: null,
-            greeting: 'Good Morning',
-            date: '',
-            time: '',
-            pin: '',
             store: useStorageStore(),
         };
     },
     methods:{
-        recordStartTime(){
-            let start_time = this.getTime();
-            let sqlDate = this.getDateForSql();
-            
+        makeRecord(){
             axios.post('http://localhost:1111/data/ClockInUser', {
                 // Request body data
-                "pin": this.pin,
-                "date": sqlDate,
-                "time": start_time
+                "pin": this.store.getPin,
+                "date": this.store.getDate,
+                "time": this.store.getTime
             })
             .catch(error => {
                 // Handle error
@@ -64,67 +55,18 @@ export default {
             });
         },
         updateClockInStatus(status){
-            axios.put('http://localhost:1111/data/updateClockInStatus/' + this.pin + '/' + status)
+            axios.put('http://localhost:1111/data/updateClockInStatus/' + this.store.getPin + '/' + status)
             .catch(error => {
                 console.error('There was an error!', error);
             });
         },
         startShift(){
-            this.pin = this.store.getPin();
-            this.recordStartTime();
             this.updateClockInStatus(1);
-
-            this.$router.push('/'+this.user+'/ClockedIn');
+            this.$router.push('/clocked-in');
         },
         endShift(){
-            this.$router.push('/'+this.user+'/ClockedOut');
-        },
-        getTime(){
-            const currentTime = new Date();
-            let hours = currentTime.getHours();
-            let minutes = currentTime.getMinutes();
-            if (hours === 0){
-                hours = 12
-            }
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            return hours + ':' + minutes;
-        },
-        getDateForSql(){
-            const currentTime = new Date();
-            let year = currentTime.getFullYear()
-            let month = currentTime.getMonth() < 10 ? '0' + currentTime.getMonth() : currentTime.getMonth();
-            let day = currentTime.getDay() < 10 ? '0' + currentTime.getDay() : currentTime.getDay();
-            return year + '-' + month + '-' + day;
-        }
-    },
-    created(){
-        // this.isClockedIn = this.$route.params.isClockedIn === 'true';
-        this.user = this.store.getName;
-        const currentTime = new Date();
-        // Get the day
-        const daysOfWeek = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const day = daysOfWeek[currentTime.getDay()];
-        // Get the month
-        const monthsOfYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const month = monthsOfYear[currentTime.getMonth()];
-        // Get the date
-        const date = currentTime.getDate();
-        this.date = day + ', ' + month + ' ' + date;
-        let hours = currentTime.getHours();
-        let minutes = currentTime.getMinutes();
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12 || 12; // Handle midnight (0 hours) and noon (12 hours)
-        minutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero to minutes if less than 10
-        this.time = hours + ':' + minutes + ' ' + ampm;
-        const currentHour = currentTime.getHours();
-        if(currentHour >= 0 && currentHour < 12){
-            this.greeting = 'Good Morning';
-        }
-        else if(currentHour >= 12 && currentHour < 18){
-            this.greeting = 'Good Afternoon';
-        }
-        else{
-            this.greeting = 'Good Evening';
+            this.updateClockInStatus(0);
+            this.$router.push('/clocked-out');
         }
     }
 }
