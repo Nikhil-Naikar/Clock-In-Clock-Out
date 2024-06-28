@@ -56,14 +56,14 @@ export const useStorageStore = defineStore('storage', {
     setStatus(status){
         this.status = status;
     },
-    switchDateFormat(){
+    sqlDateFormat(){
         const currentTime = new Date();
         let year = currentTime.getFullYear()
         let month = currentTime.getMonth() < 10 ? '0' + currentTime.getMonth() : currentTime.getMonth();
         let day = currentTime.getDay() < 10 ? '0' + currentTime.getDay() : currentTime.getDay();
         return year + '-' + month + '-' + day;
     },
-    switchTimeFormat(){
+    sqlTimeFormat(){
         const currentTime = new Date();
         let hours = currentTime.getHours();
         let minutes = currentTime.getMinutes();
@@ -71,7 +71,7 @@ export const useStorageStore = defineStore('storage', {
             hours = 12
         }
         minutes = minutes < 10 ? '0' + minutes : minutes;
-        return hours + ':' + minutes;
+        return hours.toString() + minutes.toString();
     }
   }
 })

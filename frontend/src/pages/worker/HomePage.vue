@@ -43,11 +43,13 @@ export default {
     },
     methods:{
         makeRecord(){
+            console.log('this is added =>' + this.store.sqlDateFormat());
+            console.log('this is added =>' + this.store.sqlTimeFormat());
             axios.post('http://localhost:1111/data/ClockInUser', {
                 // Request body data
                 "pin": this.store.getPin,
-                "date": this.store.getDate,
-                "time": this.store.getTime
+                "date": this.store.sqlDateFormat(),
+                "time": this.store.sqlTimeFormat()
             })
             .catch(error => {
                 // Handle error
@@ -62,10 +64,12 @@ export default {
         },
         startShift(){
             this.updateClockInStatus(1);
+            // this.makeRecord()
             this.$router.push('/clocked-in');
         },
         endShift(){
             this.updateClockInStatus(0);
+            // this.makeRecord()
             this.$router.push('/clocked-out');
         }
     }
