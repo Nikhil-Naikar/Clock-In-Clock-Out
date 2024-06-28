@@ -11,17 +11,17 @@
                 <p class="date-time-info"><img src="../../assets/clock.png"> <span>{{date}}</span> <span>{{time}}</span></p>
             </div>
             <div class="button-container">
-                    <div v-if="!isClockedIn">
+                    <div v-if="!store.getStatus">
                         <p class="question">What would you like to do?</p>
-                        <base-button class="flex-button" mode="tall-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
-                        <base-button class="flex-button" mode="tall-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                        <base-button class="flex-button" size="tall-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
+                        <base-button class="flex-button" size="tall-buttons">💰📚 View PayRoll History <span>→</span></base-button>
                     </div>
                     <div v-else>
                         <p class="question">What would you like to do?</p>
-                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 10 minute break <span>→</span></base-button>
-                        <base-button class="more-height flex-button" mode="big-buttons">☕️ 30 minute break <span>→</span></base-button>
-                        <base-button class="more-height flex-button" mode="big-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
-                        <base-button class="more-height flex-button" mode="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                        <base-button class="more-height flex-button" size="big-buttons">☕️ 10 minute break <span>→</span></base-button>
+                        <base-button class="more-height flex-button" size="big-buttons">☕️ 30 minute break <span>→</span></base-button>
+                        <base-button class="more-height flex-button" size="big-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
+                        <base-button class="more-height flex-button" size="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
                     </div>
             </div>
         </div>
@@ -30,7 +30,9 @@
 
 <script>
 import axios from 'axios';
+import { useStorageStore } from '../../stores/storage.js';
 import BaseButton from '../../components/ui/BaseButton.vue';
+
 
 export default {
   components: { BaseButton },
@@ -42,6 +44,7 @@ export default {
             date: '',
             time: '',
             pin: '',
+            store: useStorageStore(),
         };
     },
     methods:{
@@ -67,7 +70,7 @@ export default {
             });
         },
         startShift(){
-            this.pin = Number(this.$route.query.pin);
+            this.pin = this.store.getPin();
             this.recordStartTime();
             this.updateClockInStatus(1);
 
@@ -95,8 +98,8 @@ export default {
         }
     },
     created(){
-        this.isClockedIn = this.$route.params.isClockedIn === 'true';
-        this.user = this.$route.params.id;
+        // this.isClockedIn = this.$route.params.isClockedIn === 'true';
+        this.user = this.store.getName;
         const currentTime = new Date();
         // Get the day
         const daysOfWeek = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];

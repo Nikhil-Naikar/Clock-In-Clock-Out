@@ -35,6 +35,18 @@ button:active {
     font-weight: bold;
 }
 
+.big-buttons {
+  width: 90%;
+  /* height: 30%; */
+  height: auto;
+}
+
+.tall-buttons{
+  width: 90%;
+  /* height: 45%; */
+  height: auto;
+}
+
 .medium-text {
     font-size: 20px;
     font-weight: bold;
