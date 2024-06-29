@@ -3,6 +3,9 @@ package com.backend.demo.respository;
 import com.backend.demo.entity.Records;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * The RecordsRepo class is built to read and manipulate the data in the Records entity in the local MySQL database
@@ -39,4 +42,12 @@ public interface RecordsRepo extends JpaRepository<Records, Integer> {
      * @param record, a Record object
      */
     Records save(Records record);
+
+    @Modifying
+    @Query("UPDATE Records r SET r.end_time = :endTime, r.hours = :hours, r.daily_wage = :wage WHERE r.pin = :pin and r.date = :date")
+    void updateRecord(@Param("pin") int pin,
+                      @Param("date") String date,
+                      @Param("endTime") String endTime,
+                      @Param("hours") double hours,
+                      @Param("wage") int wage);
 }

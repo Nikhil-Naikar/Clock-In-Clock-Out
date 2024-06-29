@@ -24,16 +24,15 @@ public class Records {
     private String start_time;
     private String end_time;
     private int daily_wage;
-    private int rating;
-    private int hours;
-    private String feedback;
+    private double hours;
 
 
-    public int getHours() {
+
+    public double getHours() {
         return hours;
     }
 
-    public void setHours(int hours) {
+    public void setHours(double hours) {
         this.hours = hours;
     }
 
@@ -77,19 +76,4 @@ public class Records {
         this.daily_wage = daily_wage;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
 }

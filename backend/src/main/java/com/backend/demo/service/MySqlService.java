@@ -151,10 +151,25 @@ public class MySqlService implements DatabaseService {
      * @param endTime, a String
      */
     public void clockingOut(int pin, String date, String endTime){
-//       wage, update recordDE
         int hourlyRate = staffRepository.findByPin(pin).get(0).getRate();
-        String startTime = recordsRepository.findByPinAndDate(pin, date).get(0).getStart_time();
+        Records existingRecord = recordsRepository.findByPinAndDate(pin, date).get(0);
+        if (existingRecord != null) {
+            String startTime = existingRecord.getStart_time();
+            double[] temp = this.calculateWage(startTime, endTime, hourlyRate);
+            recordsRepository.updateRecord(pin, date, endTime, temp[1], (int) temp[0]);
+            System.out.println("I MADE IT HERE!!!!!!!!!!!!!!!!!!!!!!!");
+        }
 
+    }
+
+    /**
+     * Logic for calculating the daily wage
+     *
+     * @param startTime, a String
+     * @param endTime, a String
+     * @param hourlyRate, an int
+     */
+    public double[] calculateWage(String startTime, String endTime, int hourlyRate){
         String[] startParts = startTime.split(":");
         int startHours = Integer.parseInt(startParts[0]);
         int startMinutes = Integer.parseInt(startParts[1]);
@@ -173,8 +188,12 @@ public class MySqlService implements DatabaseService {
             totalMinutesDifference = (24 * 60 - totalStartMinutes) + totalEndMinutes;
         }
 
-        double wage = ((double) totalMinutesDifference / 60) * hourlyRate;
-        // have to test this solution
+        double shiftTime = (double) totalMinutesDifference / 60;
+        double wage =  shiftTime * hourlyRate;
+
+        double temp [] = {wage,shiftTime};
+        return temp;
+
     }
 
 
