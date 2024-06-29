@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The RecordsRepo class is built to read and manipulate the data in the Records entity in the local MySQL database
@@ -44,6 +45,7 @@ public interface RecordsRepo extends JpaRepository<Records, Integer> {
     Records save(Records record);
 
     @Modifying
+    @Transactional
     @Query("UPDATE Records r SET r.end_time = :endTime, r.hours = :hours, r.daily_wage = :wage WHERE r.pin = :pin and r.date = :date")
     void updateRecord(@Param("pin") int pin,
                       @Param("date") String date,

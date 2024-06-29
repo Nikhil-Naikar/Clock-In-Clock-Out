@@ -150,6 +150,7 @@ public class MySqlService implements DatabaseService {
      * @param date, a String
      * @param endTime, a String
      */
+    @Transactional
     public void clockingOut(int pin, String date, String endTime){
         int hourlyRate = staffRepository.findByPin(pin).get(0).getRate();
         Records existingRecord = recordsRepository.findByPinAndDate(pin, date).get(0);
@@ -157,7 +158,7 @@ public class MySqlService implements DatabaseService {
             String startTime = existingRecord.getStart_time();
             double[] temp = this.calculateWage(startTime, endTime, hourlyRate);
             recordsRepository.updateRecord(pin, date, endTime, temp[1], (int) temp[0]);
-            System.out.println("I MADE IT HERE!!!!!!!!!!!!!!!!!!!!!!!");
+
         }
 
     }
