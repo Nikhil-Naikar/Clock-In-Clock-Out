@@ -74,6 +74,12 @@ public class DatabaseController {
         this.databaseService.updateStatus(pin, status);
     }
 
+    /**
+     * Gets a pin and return all records that match the pin
+     * in the records table
+     *
+     * @param pin, a int (dddd)
+     */
     @GetMapping("/shiftHistory/{pin}")
     public List<Records> getHistory(@PathVariable int pin){
         return this.databaseService.employeeHistory(pin);

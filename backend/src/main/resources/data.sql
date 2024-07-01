@@ -1,7 +1,7 @@
 
 --staff table
 INSERT INTO staff (pin, name, role, rate, clocked_in)
-VALUES  (1000, 'Nikhil', 'Sous Chef', 20, 0),
+VALUES  (9999, 'Nikhil', 'Sous Chef', 20, 0),
         (1111, 'Ent', 'Head Chef', 25, 0),
         (2222, 'Noodles', 'Head Server', 22, 0),
         (3333, 'Flash', 'Line Cook', 15, 0),
@@ -11,7 +11,7 @@ VALUES  (1000, 'Nikhil', 'Sous Chef', 20, 0),
 
 --records table
 INSERT INTO records (date, pin, start_time, end_time, hours, daily_wage)
-VALUES  ('2024-06-01', 1000, '05:00', '13:00', 7.0 , 140),
+VALUES  ('2024-06-01', 9999, '05:00', '13:00', 7.0 , 140),
         ('2024-06-01', 1111, '05:00', '13:00', 7.0 , 175),
         ('2024-06-01', 2222, '05:00', '13:00', 7.0 , 154),
         ('2024-06-01', 3333, '05:00', '13:00', 7.0 , 105),
