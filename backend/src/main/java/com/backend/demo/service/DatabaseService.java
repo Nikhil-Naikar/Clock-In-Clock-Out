@@ -3,6 +3,7 @@ package com.backend.demo.service;
 import java.util.List;
 import com.backend.demo.dto.PayHistory;
 import com.backend.demo.dto.UserInfo;
+import com.backend.demo.entity.Records;
 
 /**
  * The DatabaseService interface contains several methods to interact with the
@@ -107,6 +108,13 @@ public interface DatabaseService {
      * @param newStatus, a int (d)
      */
     public void updateStatus(int pin, int newStatus);
+
+    /**
+     * Locates all records matching pin in records table
+     *
+     * @param pin, a int (dddd)
+     */
+    public List<Records> employeeHistory (int pin);
 
 
 

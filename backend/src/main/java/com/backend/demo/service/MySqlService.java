@@ -210,5 +210,15 @@ public class MySqlService implements DatabaseService {
         staffRepository.updateClockedInStatus(pin, newStatus);
     }
 
+    /**
+     * Locates all records matching pin in records table
+     *
+     * @param pin, a int (dddd)
+     */
+    public List<Records> employeeHistory (int pin){
+        return this.recordsRepository.findByPin(pin);
+
+    }
+
 
 }
