@@ -18,10 +18,10 @@
                     </div>
                     <div v-else>
                         <p class="question">What would you like to do?</p>
-                        <base-button class="more-height flex-button" size="big-buttons">☕️ 10 minute break <span>→</span></base-button>
-                        <base-button class="more-height flex-button" size="big-buttons">☕️ 30 minute break <span>→</span></base-button>
-                        <base-button class="more-height flex-button" size="big-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
-                        <base-button class="more-height flex-button" size="big-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                        <!-- <base-button class="more-height flex-button" size="big-buttons">☕️ 10 minute break <span>→</span></base-button>
+                        <base-button class="more-height flex-button" size="big-buttons">☕️ 30 minute break <span>→</span></base-button> -->
+                        <base-button class="more-height flex-button" size="tall-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
+                        <base-button class="more-height flex-button" size="tall-buttons">💰📚 View PayRoll History <span>→</span></base-button>
                     </div>
             </div>
         </div>
@@ -43,16 +43,30 @@ export default {
     },
     methods:{
         makeRecord(action){
-            axios.post(`http://localhost:1111/data/${action}`, {
-                // Request body data
-                "pin": this.store.getPin,
-                "date": this.store.sqlDateFormat(),
-                "time": this.store.sqlTimeFormat()
-            })
-            .catch(error => {
-                // Handle error
-                console.error('There was an error!', error);
-            });
+            if (action === 'clock-in'){
+                axios.post(`http://localhost:1111/data/${action}`, {
+                    // Request body data
+                    "pin": this.store.getPin,
+                    "date": this.store.sqlDateFormat(),
+                    "time": this.store.sqlTimeFormat()
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('There was an error!', error);
+                });
+            }
+            else{
+                axios.put(`http://localhost:1111/data/${action}`, {
+                    // Request body data
+                    "pin": this.store.getPin,
+                    "date": this.store.sqlDateFormat(),
+                    "time": this.store.sqlTimeFormat()
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('There was an error!', error);
+                });
+            }
         },
         updateClockInStatus(status){
             axios.put('http://localhost:1111/data/updateClockInStatus/' + this.store.getPin + '/' + status)

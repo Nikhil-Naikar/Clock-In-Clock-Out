@@ -38,13 +38,12 @@ button:active {
 .big-buttons {
   width: 90%;
   /* height: 30%; */
-  height: auto;
+  height: 25%;
 }
 
 .tall-buttons{
   width: 90%;
-  /* height: 45%; */
-  height: auto;
+  height: 45%;
 }
 
 .medium-text {
