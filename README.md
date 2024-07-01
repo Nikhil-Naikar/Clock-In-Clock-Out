@@ -1,7 +1,7 @@
 # Clock-In-Clock-Out
 
 # Description:
-A simple Clocking In and Clocking Out application built for businesses. The purpose of this project is to sharpen my skills with Vue.js (components, routing, design, Pinia), Java and SpringBoot (RESTful APIs (GET, POST, PUT, DELETE)), Docker, CI/CD pipeline (Jenkins), and using AWS (EC2 instances, MySQL database).
+A simple Clocking In and Clocking Out application built for businesses. The purpose of this project is to sharpen my skills with Vue.js (components, routing, design, Pinia), Java and SpringBoot (RESTful APIs (GET, POST, PUT, DELETE), Docker, CI/CD pipeline (Jenkins), and using AWS (EC2 instances, MySQL database).
 
 # Design Plan:
 - Build MySQL database for storing manager and workers information (name, pin, hours, pay, feedback, rating)
