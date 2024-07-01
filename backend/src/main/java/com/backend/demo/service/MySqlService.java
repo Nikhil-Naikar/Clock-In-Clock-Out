@@ -158,7 +158,6 @@ public class MySqlService implements DatabaseService {
             String startTime = existingRecord.getStart_time();
             double[] temp = this.calculateWage(startTime, endTime, hourlyRate);
             recordsRepository.updateRecord(pin, date, endTime, temp[1], (int) temp[0]);
-
         }
 
     }
