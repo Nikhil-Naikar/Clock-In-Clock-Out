@@ -1,10 +1,14 @@
 package com.backend.demo.controller;
 
+import com.backend.demo.dto.PayHistory;
 import com.backend.demo.dto.UserInfo;
 import com.backend.demo.dto.ClockInUserData;
+import com.backend.demo.entity.Records;
 import com.backend.demo.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * The DatabaseController is a controller class that create many RESTfull APIs
@@ -70,6 +74,16 @@ public class DatabaseController {
         this.databaseService.updateStatus(pin, status);
     }
 
+    /**
+     * Gets a pin and return all records that match the pin
+     * in the records table
+     *
+     * @param pin, a int (dddd)
+     */
+    @GetMapping("/shiftHistory/{pin}")
+    public List<Records> getHistory(@PathVariable int pin){
+        return this.databaseService.employeeHistory(pin);
+    }
 
 
 
