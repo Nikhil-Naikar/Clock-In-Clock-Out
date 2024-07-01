@@ -14,15 +14,31 @@
                     <div v-if="!store.getStatus">
                         <p class="question">What would you like to do?</p>
                         <base-button class="flex-button" size="tall-buttons" @click="startShift">🕣↶ Clock In <span>→</span></base-button>
-                        <base-button class="flex-button" size="tall-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                        <base-button class="flex-button" size="tall-buttons" @click="updateViewHistory">💰📚 View PayRoll History <span>→</span></base-button>
                     </div>
                     <div v-else>
                         <p class="question">What would you like to do?</p>
                         <!-- <base-button class="more-height flex-button" size="big-buttons">☕️ 10 minute break <span>→</span></base-button>
                         <base-button class="more-height flex-button" size="big-buttons">☕️ 30 minute break <span>→</span></base-button> -->
                         <base-button class="more-height flex-button" size="tall-buttons" @click="endShift">🕣↷ Clock Out <span>→</span></base-button>
-                        <base-button class="more-height flex-button" size="tall-buttons">💰📚 View PayRoll History <span>→</span></base-button>
+                        <base-button class="more-height flex-button" size="tall-buttons" @click="updateViewHistory">💰📚 View PayRoll History <span>→</span></base-button>
                     </div>
+            </div>
+        </div>
+        <div class="history-grid" v-if="viewHistory">
+            <div class="history-grid-header">
+                <div>Date</div>
+                <div>Start Time</div>
+                <div>End Time</div>
+                <div>Hours</div>
+                <div>Pay</div>
+            </div>
+            <div v-for="entry in history" :key="entry.date + entry.startTime" class="history-grid-row">
+                <div>{{ entry.date }}</div>
+                <div>{{ entry.start_time }}</div>
+                <div>{{ entry.end_time }}</div>
+                <div>{{ entry.hours.toFixed(2) }}</div>
+                <div>{{ entry.daily_wage }}</div>
             </div>
         </div>
     </div>
@@ -39,7 +55,23 @@ export default {
     data(){
         return{
             store: useStorageStore(),
+            viewHistory: false,
+            history: ''
         };
+    },
+    watch:{
+        viewHistory(newValue){
+            if (newValue){
+                axios.get(`http://localhost:1111/data/shiftHistory/${this.store.getPin}`)
+                .then(response => {
+                    this.history = response.data;
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error fetching data:', error);
+                });
+            }
+        }
     },
     methods:{
         makeRecord(action){
@@ -73,6 +105,9 @@ export default {
             .catch(error => {
                 console.error('There was an error!', error);
             });
+        },
+        updateViewHistory(){
+            this.viewHistory = !this.viewHistory;
         },
         startShift(){
             this.updateClockInStatus(1);
@@ -157,6 +192,21 @@ p {
     padding: 20px;
     padding-right: 50px;
 
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 30px;
+    gap: 10px;
+}
+.history-grid-header, .history-grid-row {
+    display: contents;
+}
+.history-grid div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
 }
 
 

@@ -43,7 +43,8 @@ button:active {
 
 .tall-buttons{
   width: 90%;
-  height: 45%;
+  height: 55%;
+  font-size: 20px;
 }
 
 .medium-text {
