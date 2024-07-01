@@ -142,6 +142,64 @@ public class MySqlService implements DatabaseService {
     }
 
     /**
+     * Updates a record from the Records table, add the end time,
+     * calculates the daily wage by looking up the rate in the staff
+     * table and determine the hours of the shift
+     *
+     * @param pin, a int (dddd)
+     * @param date, a String
+     * @param endTime, a String
+     */
+    @Transactional
+    public void clockingOut(int pin, String date, String endTime){
+        int hourlyRate = staffRepository.findByPin(pin).get(0).getRate();
+        Records existingRecord = recordsRepository.findByPinAndDate(pin, date).get(0);
+        if (existingRecord != null) {
+            String startTime = existingRecord.getStart_time();
+            double[] temp = this.calculateWage(startTime, endTime, hourlyRate);
+            recordsRepository.updateRecord(pin, date, endTime, temp[1], (int) temp[0]);
+
+        }
+
+    }
+
+    /**
+     * Logic for calculating the daily wage
+     *
+     * @param startTime, a String
+     * @param endTime, a String
+     * @param hourlyRate, an int
+     */
+    public double[] calculateWage(String startTime, String endTime, int hourlyRate){
+        String[] startParts = startTime.split(":");
+        int startHours = Integer.parseInt(startParts[0]);
+        int startMinutes = Integer.parseInt(startParts[1]);
+
+        String[] endParts = endTime.split(":");
+        int endHours = Integer.parseInt(endParts[0]);
+        int endMinutes = Integer.parseInt(endParts[1]);
+
+        int totalStartMinutes = startHours * 60 + startMinutes;
+        int totalEndMinutes = endHours * 60 + endMinutes;
+
+        int totalMinutesDifference;
+        if (totalEndMinutes >= totalStartMinutes) {
+            totalMinutesDifference = totalEndMinutes - totalStartMinutes;
+        } else {
+            totalMinutesDifference = (24 * 60 - totalStartMinutes) + totalEndMinutes;
+        }
+
+        double shiftTime = (double) totalMinutesDifference / 60;
+        double wage =  shiftTime * hourlyRate;
+
+        double temp [] = {wage,shiftTime};
+        return temp;
+
+    }
+
+
+
+    /**
      * Updates the clockedIn attribute of the record in the Staff
      * table that matches the pin attribute
      *

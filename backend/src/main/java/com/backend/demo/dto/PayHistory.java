@@ -4,10 +4,10 @@ public class PayHistory {
     private String date;
     private String startTime;
     private String endTime;
-    private int hours;
+    private double hours;
     private int dailyWage;
 
-    public PayHistory(String date, String startTime, String endTime, int hours, int dailyWage) {
+    public PayHistory(String date, String startTime, String endTime, double hours, int dailyWage) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -39,7 +39,7 @@ public class PayHistory {
         this.endTime = endTime;
     }
 
-    public int getHours() {
+    public double getHours() {
         return hours;
     }
 

@@ -48,9 +48,14 @@ public class DatabaseController {
      *
      * @param clockInUserData, a data transfer ClockInUserData object
      */
-    @PostMapping("/ClockInUser")
-    public void userClockingIn(@RequestBody ClockInUserData clockInUserData){
+    @PostMapping("/clock-in")
+    public void clockInUser(@RequestBody ClockInUserData clockInUserData){
         this.databaseService.clockingIn(clockInUserData.getPin(), clockInUserData.getDate(), clockInUserData.getTime());
+    }
+
+    @PutMapping("/clock-out")
+    public void clockOutUser(@RequestBody ClockInUserData clockInUserData){
+        this.databaseService.clockingOut(clockInUserData.getPin(), clockInUserData.getDate(), clockInUserData.getTime());
     }
 
     /**

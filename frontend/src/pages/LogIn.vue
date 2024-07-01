@@ -8,16 +8,17 @@
             <p class="errorMessage">Invalid Pin</p>
         </div>
         <div class="pin-layout">
-            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)"><p class="large-text">{{dig}}</p></base-button>            
+            <base-button v-for="dig in digits" :key="dig" @click="updateEnteredPin(dig)" size="large-text" >{{dig}}</base-button>              
         </div>
         <div>
-            <base-button @click="clearEnteredPin"><p class="medium-text">Clear Pin</p></base-button>            
+            <base-button @click="reset" size="medium-text" >Clear Pin</base-button>            
         </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { useStorageStore } from '../stores/storage.js';
 
 export default {
     data(){
@@ -25,26 +26,28 @@ export default {
             enteredPin: '',
             digits: [1,2,3,4,5,6,7,8,9],
             userData: null,
-            invalidPin: false
+            invalidPin: false,
+            store: useStorageStore()
         };
     },
     methods:{
+        //update pin variable untli length in 4
         updateEnteredPin(digit){
             if (this.enteredPin.length !== 4){
                 this.enteredPin += digit;
             }
         },
-        clearEnteredPin(){
+        // reset to default state
+        reset() {
             this.enteredPin = '';
-            this.resetButtonColors();
-        },
-        resetButtonColors() {
-            // Reset button colors to default state
             const buttons = document.querySelectorAll('.base-button');
             buttons.forEach(button => {
                 button.classList.remove('active'); // Remove any additional styles
             });
         },
+        /* make request to GET API to check validatity of pin
+        if exist, get user data, if user clocked in or out route to proper page
+        /if not, trigger invalid pin message */
         verifyPin(){
             axios.get(`http://localhost:1111/data/getUserInfo/${this.enteredPin}/2024-01-10`)
             .then(response => {
@@ -53,13 +56,14 @@ export default {
                 console.log(this.userData);
                 if (this.userData === null || Object.keys(this.userData).length === 0){
                     this.invalidPin = true
-                    this.clearEnteredPin();
+                    this.reset();
                 }else{
-                    if (this.userData.isClockedIn){
-                        this.$router.push('/main/'+this.userData.name+'/true');
-                    }else{
-                        this.$router.push({path:'/main/'+this.userData.name+'/false', query: { pin: this.enteredPin}});
-                    }
+                    // store data
+                    this.store.setName(this.userData.name);
+                    this.store.setPin(this.enteredPin);
+                    this.store.setStatus(this.userData.isClockedIn);
+                    // send to home page
+                    this.$router.push('/home');
                 }
             })
             .catch(error => {
@@ -69,11 +73,13 @@ export default {
         }
     },
     watch:{
+        /*
+            if user key is correct & clocked in, collect time clocked in and username, redirect to main page for option for clocking out
+            if user key is correct & not clocked in, collect username, redirect to main page for option for clocking in
+        */
         enteredPin(value){
             if (value.length === 4){
-                //if user key is correct & clocked in, collect time clocked in and username, redirect to main page for option for clocking out
-                //if user key is correct & not clocked in, collect username, redirect to main page for option for clocking in
-                this.verifyPin()  
+                this.verifyPin();  
             }
             else if (value >= 1 && this.invalidPin === true){
                 this.invalidPin = false;
@@ -113,21 +119,11 @@ export default {
     margin-bottom: 0px;
 }
 
-.large-text {
-    font-size: 25px;
-    font-weight: bold;
-}
-
 .sub-title {
     font-size: 35px;
     font-weight: bold;
     margin-top: 0%;
     margin-bottom: 3%;
-}
-
-.medium-text {
-    font-size: 20px;
-    font-weight: bold;
 }
 
 input{

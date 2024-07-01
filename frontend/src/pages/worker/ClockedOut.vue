@@ -1,46 +1,19 @@
 <template>
     <div class="clockedoutpage">
-        <h3>Hope you had a great shift {{ user }}!</h3>
-        <h3>Successfully Clocked Out on <span class="highlight">{{ day }} {{ date }}</span> at <span class="highlight">{{ time }}</span></h3>
+        <h3>Hope you had a great shift {{ store.getName }}!</h3>
+        <h3>Successfully Clocked Out on <span class="highlight">{{ store.getDate }}</span> at <span class="highlight">{{ store.getTime }}</span></h3>
         <router-link to="/login"><base-button>Log Out</base-button></router-link>
     </div>
 </template>
 
 <script>
+import { useStorageStore } from '../../stores/storage.js';
+
 export default {
     data(){
         return{
-            user: this.$route.params.id,
-            time: '',
-            date: '',
-            daysOfTheWeek: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-            dayIndex: '',
+            store: useStorageStore(),
         };
-    },
-    created(){
-        const currentTime = new Date();
-        const currentHour = currentTime.getHours();
-        const currentMinute = currentTime.getMinutes();
-        const currentYear = currentTime.getFullYear();
-        this.dayIndex = currentTime.getDay().toString();
-        const currentMonth = currentTime.getMonth() + 1; // Months are zero-based, so add 1
-        const currentDay = currentTime.getDate();
-
-        // Create a formatted date string in "YYYY-MM-DD" format
-        const formattedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
-
-        console.log(formattedDate);
-
-        // Use String formatting to ensure leading zeros if needed
-        const formattedTime = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
-
-        this.time = formattedTime;
-        this.date = formattedDate;
-    },
-    computed:{
-        day(){
-            return this.daysOfTheWeek[this.dayIndex-1];
-        },
     }
 }
 </script>
