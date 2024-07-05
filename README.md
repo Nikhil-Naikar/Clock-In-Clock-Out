@@ -1,31 +1,21 @@
 # Clock-In-Clock-Out
 
 # Description:
-A simple Clocking In and Clocking Out application built for businesses. The purpose of this project is to sharpen my skills with Vue.js (components, routing, design, Pinia), Java and SpringBoot (RESTful APIs (GET, POST, PUT, DELETE), Docker, CI/CD pipeline (Jenkins), and using AWS (EC2 instances, MySQL database).
-
-# Design Plan:
-- Build MySQL database for storing manager and workers information (name, pin, hours, pay, feedback, rating)
-- Build views for different pages (login page, main page, feedback/rating page for workers, hours/pay summary page for workers, hours/pay summary page for the manager, add/remove worker page, feedback/shift rating page for manager)
-- Vue.js for frontend, 
-- Java and sprint boot for backend rest APIs and communication with the database
-- Plan to setup CI/CD pipeline (Github, Docker, Jenkins, AWS EC2 instance) 
-- Write some JUnit Tests
+A Full-stack application with a layered architecture design consisting of a frontend (Vue), backend (Sring Boot), and a Database (MySQL).
+Clocking In and Clocking Out software built for restaurants. The purpose of this project is to sharpen my skills with Vue.js (components, routing, design, Pinia), Java and SpringBoot (RESTful APIs (GET, POST, PUT, DELETE) & unit testing (JUnit), Docker, CI/CD pipeline (Jenkins), and using AWS (EC2 instances, MySQL database).
 
 # Funtionalities:
 ## Workers:
 - Log In/Out (4 digit pin)
 - Clock In/Out
-- View Shift and Pay History
-- 10/30 minute break time
-- Option to rate shifts and leave feedback for the manager
+- View Shift History
+- Leave feedback for the manager
 
 ## Manager:
 - Log In/Out
-- Add new workers and pin
-- Remove workers and pin
-- View feedback and ratings from workers
-- View total pay and hours
-- View each worker's pay and hour
+- Add/remove workers 
+- View feedback from workers
+- View shift history (more details than workers view)
 
 # Progress on Worker UI so far:
 <img width="700" alt="Screenshot 2023-11-04 at 4 55 23 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/5586221a-cf4e-4a05-9a12-8f61ccfbb0ae">
