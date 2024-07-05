@@ -1,0 +1,20 @@
+services:
+  server:
+    build: .
+    ports:
+      - 1111:1111
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+  mysqldb:
+    image: "mysql:latest"
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: Clock_In_Clock_Out
+      MYSQL_ROOT_PASSWORD: iamlearning
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
