@@ -1,5 +1,5 @@
+USE Clock_In_Clock_Out;
 
---staff table
 INSERT INTO staff (pin, name, role, rate, clocked_in)
 VALUES  (9999, 'Nikhil', 'Sous Chef', 20, 0),
         (1111, 'Ent', 'Head Chef', 25, 0),
@@ -9,7 +9,6 @@ VALUES  (9999, 'Nikhil', 'Sous Chef', 20, 0),
         (5555, 'Philip', 'Server', 15, 0),
         (5555, 'Afluu', 'Manager', 30, 0);
 
---records table
 INSERT INTO records (date, pin, start_time, end_time, hours, daily_wage)
 VALUES  ('2024-06-01', 9999, '05:00', '13:00', 7.0 , 140),
         ('2024-06-01', 1111, '05:00', '13:00', 7.0 , 175),
