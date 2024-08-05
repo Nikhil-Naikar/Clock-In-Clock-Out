@@ -33,7 +33,7 @@
 <img width="700" alt="Screenshot 2024-03-20 at 8 38 39 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/d50110c5-8ea7-4453-853a-6df2d986d6be">
 <img width="700" alt="Screenshot 2024-03-20 at 8 39 26 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/65206b66-bee1-4b7b-9a1d-0b980283c10f">
 
-### My Restful APIs 🔎
+### RESTful APIs 🔎
 | Method     | API URL                                      | Comments                                                              |
 |------------|----------------------------------------------|---------------------------------------------------------------------------|
 | GET        | `/data/getUserInfo/{pin}/{date}`             | Gets user info for a specific pin and date                                |
