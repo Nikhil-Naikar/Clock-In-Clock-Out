@@ -24,7 +24,7 @@
 <img width="700" alt="Screenshot 2024-03-20 at 8 39 26 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/f2d2fac1-8242-43b9-8d42-8d03b7f68bb6">
 
 # Funtionalities 📋
-## Employee:
+**Employee** actions:
 - Log In/Out (4 digit pin)
 - Clock In/Out of shift
 - View shift/pay History
