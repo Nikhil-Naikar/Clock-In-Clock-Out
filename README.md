@@ -16,7 +16,7 @@
 -   Layered architecture (Frontend <=> Backend <=> Database)
 
 ## Views 🧐
-### What an employee would see:
+**What an employee would see:**
 <img width="700" alt="Screenshot 2023-11-04 at 4 55 11 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/38ab7f22-bef4-4608-b0f8-78c363e7375a">
 <img width="700" alt="Screenshot 2023-11-04 at 4 55 11 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/3c18b734-1e22-4038-80e6-349ea8139360">
 <img width="700" alt="Screenshot 2023-11-04 at 4 55 11 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/e5ad7459-9b88-4250-a32b-1afc600599db">
