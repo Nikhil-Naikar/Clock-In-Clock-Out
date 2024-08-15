@@ -10,7 +10,6 @@
 -   Pinia 
 -   Java
 -   Spring Boot 
--   SQL
 -   MySQL
 -   Docker
 -   Layered architecture (Frontend <=> Backend <=> Database)
