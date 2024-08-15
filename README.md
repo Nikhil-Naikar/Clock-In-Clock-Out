@@ -1,4 +1,4 @@
-# Clock In Clock Out App
+# Clock In Clock Out Web App
 
 <img width="700" alt="Screenshot 2023-11-04 at 4 55 23 PM" src="https://github.com/WonderBoi99/Clock-In-Clock-Out/assets/61436662/5586221a-cf4e-4a05-9a12-8f61ccfbb0ae">
 
